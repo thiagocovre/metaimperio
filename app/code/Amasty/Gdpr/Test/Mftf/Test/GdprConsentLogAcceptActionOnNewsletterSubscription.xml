@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="GdprConsentLogAcceptActionOnNewsletterSubscription">
+        <annotations>
+            <features value="Consent Checkbox. Consent Log"/>
+            <stories value="Log Record Is Appeared on the Consent Log Grid After Newsletter Subscription. Consent Is Accept in the Action Column"/>
+            <title value="Log Record Is Appeared on the Consent Log Grid After Newsletter Subscription. Consent Is Accept in the Action Column"/>
+            <description value="Check Log Record Is Appeared on the Consent Log Grid and Has Accept Action Type"/>
+            <severity value="MAJOR"/>
+            <testCaseId value="Gdpr-27"/>
+            <group value="Gdpr"/>
+            <group value="ConsentCheckbox"/>
+            <group value="ConsentLog"/>
+        </annotations>
+
+        <before>
+            <createData entity="Simple_US_Customer" stepKey="customer"/>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin"/>
+            <actionGroup ref="AdminCreateConsentCheckboxActionGroup" stepKey="createConsentCheckbox">
+                <argument name="consentCheckbox" value="logConsentCheckbox"/>
+                <argument name="consentCheckboxLocation" value="checkboxLocation.subscription"/>
+            </actionGroup>
+        </before>
+        <after>
+            <actionGroup ref="AdminFindConsentCheckboxActionGroup" stepKey="findConsentCheckbox"/>
+            <actionGroup ref="AdminDeleteFromGridConsentCheckboxActionGroup" stepKey="deleteFromGridConsentCheckbox"/>
+            <actionGroup ref="logout" stepKey="logoutOfAdmin"/>
+            <deleteData createDataKey="customer" stepKey="deleteCustomer"/>
+        </after>
+
+        <actionGroup ref="LoginToStorefrontActionGroup" stepKey="loginToStorefront">
+            <argument name="Customer" value="$$customer$$"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontOpenContactUsPageActionGroup" stepKey="openContactUsPage"/>
+        <actionGroup ref="StorefrontCheckConsentCheckboxActionGroup" stepKey="checkConsentCheckbox"/>
+        <actionGroup ref="StorefrontSubscribeNewsletterActionGroup" stepKey="newsletterSubscribe">
+            <argument name="email" value="$$customer.email$$"/>
+        </actionGroup>
+        <actionGroup ref="AdminFindRecordOnConsentLogByEmailActionGroup" stepKey="findRecordOnConsentLogByEmail">
+            <argument name="customerEmail" value="$$customer.email$$"/>
+        </actionGroup>
+        <actionGroup ref="AdminCheckActionOnConsentLogActionGroup" stepKey="checkActionOnConsentLog"/>
+        <actionGroup ref="AdminDeleteConsentLogRecordActionGroup" stepKey="deleteLogRecord"/>
+    </test>
+</tests>

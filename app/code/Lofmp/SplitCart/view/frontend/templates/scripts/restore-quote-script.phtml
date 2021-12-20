@@ -1,0 +1,11 @@
+<script>
+    require(['jquery', 'mage/url'], function($, urlBuilder){
+        $(document).ready(function(){
+            urlBuilder.setBaseUrl('<?php /* @escapeNotVerified */ echo $block->getBaseUrl();?>');
+            $.ajax({
+                url: urlBuilder.build("splitcart/refreshminicart/action"),
+                type: "POST"
+            });
+        })
+    });
+</script>

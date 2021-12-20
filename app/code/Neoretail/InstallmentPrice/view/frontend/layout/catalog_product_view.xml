@@ -1,0 +1,11 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.price">
+            <block class="Neoretail\InstallmentPrice\Block\Product\Installment" name="installment.price"
+                ifconfig="catalog/installment_general/installment_enable" template="Neoretail_InstallmentPrice::product/installment.phtml"/>
+
+            <block class="Neoretail\InstallmentPrice\Block\Product\Installment" name="installment.price.list"
+                ifconfig="catalog/installment_general/installment_list_show" template="Neoretail_InstallmentPrice::product/InstallmentList.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

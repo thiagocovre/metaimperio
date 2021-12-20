@@ -1,0 +1,22 @@
+{
+    "name": "neoretail/module-csp",
+    "description": "Configure CSP",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Neocantra",
+            "email": "contato@neocantra.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Neoretail\\CSP\\": ""
+        }
+    }
+}

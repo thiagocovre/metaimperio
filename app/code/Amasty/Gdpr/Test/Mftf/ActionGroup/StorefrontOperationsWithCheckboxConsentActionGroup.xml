@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+    <actionGroup name="StorefrontCheckConsentCheckboxActionGroup">
+        <arguments>
+            <argument name="consentCheckbox" defaultValue="defaultConsentCheckbox.checkboxCode"/>
+        </arguments>
+        <checkOption selector="{{StorefrontConsentCheckboxSection.ConsentCheckbox(consentCheckbox)}}" stepKey="checkConsentCheckbox"/>
+    </actionGroup>
+
+    <actionGroup name="StorefrontCheckConsentCheckboxCheckoutActionGroup">
+        <arguments>
+            <argument name="consentCheckbox" defaultValue="defaultConsentCheckbox.checkboxCode"/>
+        </arguments>
+        <checkOption selector="{{StorefrontConsentCheckboxSection.ConsentCheckboxCheckout(consentCheckbox)}}" stepKey="checkConsentCheckbox"/>
+    </actionGroup>
+
+    <actionGroup name="StorefrontOpenPrivacyPolicyPopupActionGroup">
+        <arguments>
+            <argument name="consentCheckbox" defaultValue="defaultConsentCheckbox.checkboxLabel"/>
+        </arguments>
+        <click selector="{{StorefrontConsentCheckboxSection.PrivacyPolicyLink(consentCheckbox)}}" stepKey="openPrivacyPolicy"/>
+        <waitForPageLoad stepKey="waitForPrivacyPolicyWindowLoad"/>
+    </actionGroup>
+
+    <actionGroup name="StorefrontOpenPrivacyPolicyPopupCheckoutActionGroup">
+        <arguments>
+            <argument name="consentCheckbox" defaultValue="defaultConsentCheckbox"/>
+        </arguments>
+        <click selector="{{StorefrontConsentCheckboxSection.PrivacyPolicyLinkCheckout(consentCheckbox.checkboxCode, consentCheckbox.checkboxLabel)}}" stepKey="openPrivacyPolicy"/>
+        <waitForPageLoad stepKey="waitForPrivacyPolicyWindowLoad"/>
+    </actionGroup>
+
+    <actionGroup name="StorefrontAcceptPrivacyPolicyPopupActionGroup">
+        <click selector="{{StorefrontPrivacyPolicyPopupSection.ReadAndAcceptButton}}" stepKey="acceptPrivacyPolicy"/>
+        <waitForPageLoad stepKey="waitForAcceptPrivacyPolicy"/>
+    </actionGroup>
+
+    <actionGroup name="StorefrontClosePrivacyPolicyPopupActionGroup">
+        <click selector="{{StorefrontPrivacyPolicyPopupSection.ClosePopup}}" stepKey="closePrivacyPolicyPopup"/>
+        <waitForPageLoad stepKey="waitForClosePrivacyPolicyPopup"/>
+    </actionGroup>
+</actionGroups>

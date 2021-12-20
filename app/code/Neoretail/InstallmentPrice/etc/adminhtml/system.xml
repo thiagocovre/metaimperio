@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="catalog">
+            <group id="installment_general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Mostrar Parcelamento</label>
+                <field id="installment_enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="installment_number" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Qty max of installments</label>
+                    <validate>validate-number</validate>
+                    <depends>
+                        <field id="installment_enable">1</field>
+                    </depends>
+                </field>
+                <field id="installment_minamout" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Min amount of installments</label>
+                    <comment>Insert 0 to disable.</comment>
+                    <validate>validate-number</validate>
+                    <depends>
+                        <field id="installment_enable">1</field>
+                    </depends>
+                </field>
+                <field id="installment_list_show" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Show installment popup</label>
+                    <comment>Show installment list within a popup.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="installment_enable">1</field>
+                    </depends>
+                </field>
+                <field id="installment_list_number" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Qty max of installments (Installment popup)</label>
+                    <validate>validate-number</validate>
+                    <depends>
+                        <field id="installment_list_show">1</field>
+                        <field id="installment_enable">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

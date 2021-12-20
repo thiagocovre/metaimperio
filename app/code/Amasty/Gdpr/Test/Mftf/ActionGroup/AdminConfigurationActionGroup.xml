@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+    <!--Customer’s Account Privacy Settings-->
+    <actionGroup name="AdminConfigurationsAllowDownloadingPersonalDataActionGroup">
+        <arguments>
+            <argument name="privacySettings" defaultValue="isEnabledPrivacySettings.yes"/>
+        </arguments>
+        <amOnPage url="{{AdminConfigurationPage.url}}" stepKey="navigateToGdprConfigurationPage"/>
+        <conditionalClick selector="{{AdminConfigurationCustomerAccountPrivacySettingsTabSection.CustomerAccountPrivacySettingsTab}}"
+                          dependentSelector="{{AdminConfigurationCustomerAccountPrivacySettingsTabSection.AllowDownloadingPersonalData}}"
+                          visible="false" stepKey="openCustomerAccountPrivacySettingsTab"/>
+        <selectOption selector="{{AdminConfigurationCustomerAccountPrivacySettingsTabSection.AllowDownloadingPersonalData}}"
+                      userInput="{{privacySettings}}"
+                      stepKey="selectPrivacySettingsOption"/>
+        <click selector="{{AdminConfigurationSection.SaveConfig}}" stepKey="saveConfig"/>
+        <waitForPageLoad stepKey="waitForAllowDownloadingPersonalDataSaving"/>
+        <conditionalClick selector="{{AdminConfigurationCustomerAccountPrivacySettingsTabSection.CustomerAccountPrivacySettingsTab}}"
+                          dependentSelector="{{AdminConfigurationCustomerAccountPrivacySettingsTabSection.AllowDownloadingPersonalData}}"
+                          visible="true" stepKey="closeCustomerAccountPrivacySettingsTab"/>
+        <magentoCLI command="cache:flush" arguments="config" stepKey="flushCache"/>
+    </actionGroup>
+
+    <actionGroup name="AdminConfigurationsAllowAnonymizingPersonalDataActionGroup" extends="AdminConfigurationsAllowDownloadingPersonalDataActionGroup">
+        <selectOption selector="{{AdminConfigurationCustomerAccountPrivacySettingsTabSection.AllowAnonymizingPersonalData}}"
+                      userInput="{{privacySettings}}"
+                      stepKey="selectPrivacySettingsOption"/>
+    </actionGroup>
+
+    <actionGroup name="AdminConfigurationsAllowDeletingAccountActionGroup" extends="AdminConfigurationsAllowDownloadingPersonalDataActionGroup">
+        <selectOption selector="{{AdminConfigurationCustomerAccountPrivacySettingsTabSection.AllowDeletingAccount}}"
+                      userInput="{{privacySettings}}"
+                      stepKey="selectPrivacySettingsOption"/>
+    </actionGroup>
+
+    <actionGroup name="AdminConfigurationsAllowOptingOutConsentActionGroup" extends="AdminConfigurationsAllowDownloadingPersonalDataActionGroup">
+        <selectOption selector="{{AdminConfigurationCustomerAccountPrivacySettingsTabSection.AllowOptingOutFromGivenConsent}}"
+                      userInput="{{privacySettings}}"
+                      stepKey="selectPrivacySettingsOption"/>
+    </actionGroup>
+</actionGroups>

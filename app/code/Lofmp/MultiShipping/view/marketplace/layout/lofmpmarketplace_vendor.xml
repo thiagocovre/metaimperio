@@ -1,0 +1,47 @@
+<!--
+/**
+ * Landofcoder
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://landofcoder.com/license
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category   Landofcoder
+ * @package    Lofmp_MultiShipping
+ * @copyright  Copyright (c) 2017 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceBlock name="seller_settings_container">
+		   <block class="Lof\MarketPlace\Block\Link\Current" name="seller_shipping_settings" after="seller_payment_settings" ifconfig="lofmp_multishipping/general/activation">
+				<arguments>
+					 <argument name="name" xsi:type="string">seller_shipping_settings</argument>
+					 <argument name="label" xsi:type="string">Shipping Settings</argument>
+					 <argument name="path" xsi:type="string">multishipping/settings/index</argument>
+					 <argument name="font_awesome" xsi:type="string">fa fa-money</argument>
+					 <argument name="sort_order" xsi:type="string">20</argument>
+					 <argument name="level" xsi:type="string">2</argument>
+				</arguments>
+		   </block>
+		   <block class="Lof\MarketPlace\Block\Link\Current" name="seller_shipping_methods" after="seller_shipping_settings" ifconfig="lofmp_multishipping/general/activation">
+				<arguments>
+					 <argument name="name" xsi:type="string">seller_shipping_methods</argument>
+					 <argument name="label" xsi:type="string">Shipping Methods</argument>
+					 <argument name="path" xsi:type="string">multishipping/methods/view</argument>
+					 <argument name="font_awesome" xsi:type="string">fa fa-money</argument>
+					 <argument name="sort_order" xsi:type="string">30</argument>
+					 <argument name="level" xsi:type="string">2</argument>
+				</arguments>
+		   </block>
+		</referenceBlock>
+    </body>
+</page>

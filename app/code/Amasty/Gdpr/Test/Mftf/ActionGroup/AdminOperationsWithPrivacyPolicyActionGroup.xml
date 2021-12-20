@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+    <!--operations on privacy policy grid-->
+    <actionGroup name="AdminFindPolicyOnGridByStatusActionGroup">
+        <arguments>
+            <argument name="policyStatusGrid" defaultValue="status.enabled"/>
+            <argument name="qtyRecordsFound" defaultValue="qtyRecordFound.1_record"/>
+        </arguments>
+        <amOnPage url="{{AdminPrivacyPolicyGrid.url}}" stepKey="openPrivacyPolicyGrid"/>
+        <waitForPageLoad stepKey="waitForPolicyGridGridLoad"/>
+        <conditionalClick selector="{{AdminPrivacyPolicyGridSection.ClearAllFilters}}"
+                          dependentSelector="{{AdminPrivacyPolicyGridSection.ActiveFilters}}"
+                          visible="true" stepKey="clearAllFilters"/>
+        <waitForPageLoad stepKey="waitForCLearFilterDataLoad"/>
+        <conditionalClick selector="{{AdminPrivacyPolicyGridSection.FiltersButton}}"
+                          dependentSelector="{{AdminPrivacyPolicyGridSection.ApplyFilter}}"
+                          visible="false" stepKey="openFilter"/>
+        <click selector="{{AdminPrivacyPolicyGridSection.StatusSelect}}" stepKey="openStatusSelect"/>
+        <click selector="{{AdminPrivacyPolicyGridSection.Status(policyStatusGrid)}}" stepKey="selectStatusSelect"/>
+        <click selector="{{AdminPrivacyPolicyGridSection.StatusSelectDone}}" stepKey="closeStatusSelect"/>
+        <click selector="{{AdminPrivacyPolicyGridSection.ApplyFilter}}" stepKey="applyFilter"/>
+        <waitForPageLoad stepKey="waitForFilteredDataLoad"/>
+        <seeElement selector="{{AdminPrivacyPolicyGridSection.RecordsFoundMessage(qtyRecordsFound)}}" stepKey="seeCorrectQtyRecordsFound"/>
+    </actionGroup>
+
+    <actionGroup name="AdminOpenPrivacyPolicyForEditActionGroup">
+        <click selector="{{AdminPrivacyPolicyGridSection.EditPrivacyPolicy}}" stepKey="openPrivacyPolicy"/>
+        <waitForPageLoad stepKey="waitForPrivacyPolicyPageLoad"/>
+        <click selector="{{AdminPrivacyPolicySection.Clone}}" stepKey="clonePrivacyPolicy"/>
+        <waitForPageLoad stepKey="waitForPrivacyPolicyCloneCreated"/>
+    </actionGroup>
+
+    <!--operations on privacy policy page-->
+    <actionGroup name="AdminCreatePrivacyPolicyActionGroup">
+    <arguments>
+        <argument name="newPrivacyPolicy" defaultValue="defaultPrivacyPolicy"/>
+    </arguments>
+        <fillField userInput="{{newPrivacyPolicy.comment}}" selector="{{AdminPrivacyPolicySection.Comment}}" stepKey="fillPolicyContent"/>
+        <fillField userInput="{{newPrivacyPolicy.version}}" selector="{{AdminPrivacyPolicySection.Version}}" stepKey="fillPolicyVersion"/>
+        <selectOption userInput="{{newPrivacyPolicy.status}}" selector="{{AdminPrivacyPolicySection.Status}}" stepKey="selectPolicyStatus"/>
+        <click selector="{{AdminPrivacyPolicySection.SaveAndContinue}}" stepKey="savePrivacyPolicy"/>
+        <waitForPageLoad stepKey="waitForPrivacyPolicyCreated"/>
+        <seeElement selector="{{AdminPrivacyPolicySection.PolicyCreatedMessage}}" stepKey="seePolicyCreatedMessage"/>
+    </actionGroup>
+</actionGroups>

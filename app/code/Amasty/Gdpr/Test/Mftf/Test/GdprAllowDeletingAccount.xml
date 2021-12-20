@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="GdprAllowDeletingAccount" extends="GdprAllowDownloadingPersonalData">
+        <annotations>
+            <features value="Allow Deleting Account"/>
+            <stories value="Deleting Account Form Is Available on the Front Privacy Settings Page"/>
+            <title value="Deleting Account Form Is Available on the Front Privacy Settings Page"/>
+            <description value="Deleting Account Form Is Appeared on the Front Privacy Settings Page"/>
+            <severity value="MAJOR"/>
+            <testCaseId value="Gdpr-3"/>
+            <group value="Gdpr"/>
+            <group value="CustomerAccountPrivacySettings"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="AdminConfigurationsAllowDeletingAccountActionGroup" stepKey="setPrivacySettingsOption"/>
+        </before>
+        <after>
+            <actionGroup ref="AdminConfigurationsAllowDeletingAccountActionGroup" stepKey="setDefaultPrivacySettingsOption"/>
+        </after>
+
+        <actionGroup ref="StorefrontCheckDeleteAccountBlockIsAvailableActionGroup" stepKey="checkAppropriatePrivacySettingsBlockIsAvailable"/>
+        <actionGroup ref="AdminConfigurationsAllowDeletingAccountActionGroup" stepKey="setToNoPrivacySettingsOption">
+            <argument name="privacySettings" value="isEnabledPrivacySettings.no"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckADeleteAccountBlockIsNotAvailableActionGroup" stepKey="checkAppropriatePrivacySettingsBlockIsNotAvailable"/>
+    </test>
+</tests>

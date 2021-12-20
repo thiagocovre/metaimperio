@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="GdprCheckboxPositionOnNewCustomerAccount">
+        <annotations>
+            <features value="Consent Checkbox"/>
+            <stories value="Position of Some Consent Checkboxes on the New Customer Account Creation Page"/>
+            <title value="Position of Some Consent Checkboxes on the New Customer Account Creation Page"/>
+            <description value="Check Position of Some Checkboxes Matches Customized"/>
+            <severity value="MAJOR"/>
+            <testCaseId value="Gdpr-24"/>
+            <group value="Gdpr"/>
+            <group value="ConsentCheckbox"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin"/>
+            <actionGroup ref="AdminCreateConsentCheckboxActionGroup" stepKey="createConsentCheckboxFirstPosition"/>
+            <actionGroup ref="AdminCreateConsentCheckboxActionGroup" stepKey="createConsentCheckboxSecondPosition">
+                <argument name="consentCheckbox" value="secondPositionConsentCheckbox"/>
+            </actionGroup>
+        </before>
+        <after>
+            <actionGroup ref="AdminFindConsentCheckboxActionGroup" stepKey="findFirstConsentCheckbox"/>
+            <actionGroup ref="AdminDeleteFromGridConsentCheckboxActionGroup" stepKey="deleteFromGridFirstConsentCheckbox"/>
+            <actionGroup ref="AdminFindConsentCheckboxActionGroup" stepKey="findSecondConsentCheckbox">
+                <argument name="consentCheckbox" value="secondPositionConsentCheckbox.checkboxName"/>
+            </actionGroup>
+            <actionGroup ref="AdminDeleteFromGridConsentCheckboxActionGroup" stepKey="deleteFromGridSecondConsentCheckbox"/>
+            <actionGroup ref="logout" stepKey="logoutOfAdmin"/>
+        </after>
+
+        <!--assert checkboxes position before changing-->
+        <actionGroup ref="StorefrontOpenCustomerAccountCreatePageActionGroup" stepKey="openCreateAccountPage"/>
+        <actionGroup ref="StorefrontAssertCheckboxPositionActionGroup" stepKey="checkFirstPositionCheckbox">
+            <argument name="checkboxPosition" value="defaultConsentCheckbox.checkboxPosition"/>
+            <argument name="consentCheckbox" value="defaultConsentCheckbox.checkboxCode"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontAssertCheckboxPositionActionGroup" stepKey="checkSecondPositionCheckbox">
+            <argument name="checkboxPosition" value="secondPositionConsentCheckbox.checkboxPosition"/>
+            <argument name="consentCheckbox" value="secondPositionConsentCheckbox.checkboxCode"/>
+        </actionGroup>
+        <!--change checkboxes position-->
+        <actionGroup ref="AdminFindConsentCheckboxActionGroup" stepKey="findFirstConsentCheckbox"/>
+        <actionGroup ref="AdminOpenConsentCheckboxFromGridActionGroup" stepKey="openFirstConsentCheckboxFromGrid"/>
+        <actionGroup ref="AdminEditPositionConsentCheckboxActionGroup" stepKey="editFirstConsentCheckboxPosition">
+            <argument name="checkboxPosition" value="secondPositionConsentCheckbox.checkboxPosition"/>
+        </actionGroup>
+        <actionGroup ref="AdminFindConsentCheckboxActionGroup" stepKey="findSecondConsentCheckbox">
+            <argument name="consentCheckbox" value="secondPositionConsentCheckbox.checkboxName"/>
+        </actionGroup>
+        <actionGroup ref="AdminOpenConsentCheckboxFromGridActionGroup" stepKey="openSecondConsentCheckboxFromGrid"/>
+        <actionGroup ref="AdminEditPositionConsentCheckboxActionGroup" stepKey="editSecondConsentCheckboxPosition">
+            <argument name="checkboxPosition" value="defaultConsentCheckbox.checkboxPosition"/>
+        </actionGroup>
+        <!--assert checkboxes position after changing-->
+        <actionGroup ref="StorefrontOpenCustomerAccountCreatePageActionGroup" stepKey="openCreateAccountPageAfterChangeCheckboxPositions"/>
+        <actionGroup ref="StorefrontAssertCheckboxPositionActionGroup" stepKey="checkFirstCheckboxAfterChangePositions">
+            <argument name="checkboxPosition" value="defaultConsentCheckbox.checkboxPosition"/>
+            <argument name="consentCheckbox" value="secondPositionConsentCheckbox.checkboxCode"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontAssertCheckboxPositionActionGroup" stepKey="checkSecondCheckboxAfterChangeCheckboxPositions">
+            <argument name="checkboxPosition" value="secondPositionConsentCheckbox.checkboxPosition"/>
+            <argument name="consentCheckbox" value="defaultConsentCheckbox.checkboxCode"/>
+        </actionGroup>
+    </test>
+</tests>

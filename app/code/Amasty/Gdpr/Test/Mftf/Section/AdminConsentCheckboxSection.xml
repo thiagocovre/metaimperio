@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+    <section name="AdminConsentCheckboxesGridSection">
+        <element name="NewCheckbox" type="button" selector="//*[@id='new']"/>
+        <element name="SavedConsentMessage" type="text" selector="//*[@id='messages'][contains(string(), 'You saved the consent.')]"/>
+        <element name="FiltersButton" type="button" selector="//button[@data-action='grid-filter-expand']"/>
+        <element name="ActiveFilters" type="text" selector="//*[@class='admin__data-grid-header']//div[@class='admin__data-grid-filters-current _show']"/>
+        <element name="ClearAllFilters" type="button" selector="//*[@class='admin__data-grid-header']//button[@data-action='grid-filter-reset']"/>
+        <element name="ApplyFilter" type="button" selector="//button[@data-action='grid-filter-apply']"/>
+        <element name="NameField" type="input" selector="//*[@name='name']"/>
+        <element name="RecordsFoundMessage" type="text" selector="//*[@class='admin__control-support-text'][contains(string(), '{{qty}} records found')]" parameterized="true"/>
+        <element name="FirstRowCheckbox" type="checkbox" selector="//tr[contains(@data-repeat-index, '0')]//input[contains(@data-action, 'select-row')]"/>
+        <element name="MassActions" type="button" selector="//*[@class='admin__data-grid-header-row row row-gutter']//*[@class='action-select-wrap']"/>
+        <element name="DeleteMassAction" type="button" selector="//*[@class='admin__data-grid-header-row row row-gutter']//*[@class='action-menu-items'][contains(string(), 'Delete')]"/>
+        <element name="AcceptDeleteCheckboxButton" type="button" selector="//*[@class='action-primary action-accept']"/>
+        <element name="EditConsentCheckbox" type="button" selector="//td[count(//div[@data-role='grid-wrapper']//tr//th[contains(., 'Action')]/preceding-sibling::th) +1 ][contains(string(), 'Edit')]/a"/>
+    </section>
+    <section name="AdminConsentCheckboxPageSection">
+        <element name="SaveCheckbox" type="button" selector="//*[@id='save']"/>
+        <element name="SaveAndContinueEdit" type="button" selector="//*[@id='save_and_continue']"/>
+        <element name="DeleteConsent" type="button" selector="//*[@id='consent-edit-delete-button']"/>
+        <element name="CheckboxName" type="input" selector="//*[@name='consent[name]']"/>
+        <element name="CheckboxCode" type="input" selector="//*[@name='consent[consent_code]']"/>
+        <element name="CheckboxEnabled" type="button" selector="//*[@data-index='is_enabled']//label/span[contains(string(), 'Enabled')]"/>
+        <element name="StatusCheckboxEnabled" type="checkbox" selector="//*[@data-index='is_enabled']//*[@class='admin__actions-switch-checkbox'][@value='{{status}}']" parameterized="true"/>
+        <element name="ConfirmationRequired" type="button" selector="//*[@data-index='is_required']//label/span[contains(string(), 'Confirmation Required')]"/>
+        <element name="StatusConfirmationRequired" type="checkbox" selector="//*[@data-index='is_required']//*[@class='admin__actions-switch-checkbox'][@value='{{status}}']" parameterized="true"/>
+        <element name="LogTheConsent" type="button" selector="//*[@data-index='log_the_consent']//label/span[contains(string(), 'Log the Consent')]"/>
+        <element name="StatusLogTheConsent" type="checkbox" selector="//*[@data-index='log_the_consent']//*[@class='admin__actions-switch-checkbox'][@value='{{status}}']" parameterized="true"/>
+        <element name="HideCheckboxAfterConsent" type="button" selector="//*[@data-index='hide_the_consent_after_user_left_the_consent']//label/span[contains(string(), 'Hide the Checkbox after User Gave the Consent')]"/>
+        <element name="StatusHideCheckboxAfterConsent" type="checkbox" selector="//*[@data-index='hide_the_consent_after_user_left_the_consent']//*[@class='admin__actions-switch-checkbox'][@value='{{status}}']" parameterized="true"/>
+        <element name="CheckboxPosition" type="input" selector="//*[@name='consent[sort_order]']"/>
+        <element name="CheckboxLocation" type="multiselect" selector="//*[@name='consent[consent_location]']"/>
+        <element name="CheckboxText" type="textarea" selector="//*[@name='consent[consent_text]']"/>
+        <element name="ConsentLinkType" type="select" selector="//*[@name='consent[link_type]']"/>
+        <element name="CountriesRestrictment" type="select" selector="//*[@name='consent[visibility]']"/>
+        <element name="SavedConsentMessage" type="text" selector="//*[@id='messages'][contains(string(), 'You saved the consent.')]"/>
+    </section>
+</sections>

@@ -31,4 +31,13 @@ class Interceptor extends \Magento\ProductVideo\Block\Product\View\Gallery imple
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getImage');
         return $pluginInfo ? $this->___callPlugins('getImage', func_get_args(), $pluginInfo) : parent::getImage($product, $imageId, $attributes);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
 }

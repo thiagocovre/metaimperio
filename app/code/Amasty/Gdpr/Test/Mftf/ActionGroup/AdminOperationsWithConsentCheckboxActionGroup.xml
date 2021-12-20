@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+    <!--create consent checkbox-->
+    <actionGroup name="AdminCreateConsentCheckboxActionGroup">
+        <arguments>
+            <argument name="consentCheckbox" defaultValue="defaultConsentCheckbox"/>
+            <argument name="consentCheckboxLocation" defaultValue="checkboxLocation.registration"/>
+        </arguments>
+        <amOnPage url="{{AdminConsentCheckboxesGrid.url}}" stepKey="openConsentCheckboxesGrid"/>
+        <waitForPageLoad stepKey="waitForConsentCheckboxesGridLoad"/>
+        <click selector="{{AdminConsentCheckboxesGridSection.NewCheckbox}}" stepKey="clickNewCheckbox"/>
+        <waitForPageLoad stepKey="waitForNewCheckboxPageLoad"/>
+        <fillField selector="{{AdminConsentCheckboxPageSection.CheckboxName}}" userInput="{{consentCheckbox.checkboxName}}" stepKey="fillCheckboxName"/>
+        <fillField selector="{{AdminConsentCheckboxPageSection.CheckboxCode}}" userInput="{{consentCheckbox.checkboxCode}}" stepKey="fillCheckboxCode"/>
+        <conditionalClick selector="{{AdminConsentCheckboxPageSection.CheckboxEnabled}}"
+                          dependentSelector="{{AdminConsentCheckboxPageSection.StatusCheckboxEnabled(consentCheckbox.enable)}}"
+                          visible="false" stepKey="enableCheckbox"/>
+        <conditionalClick selector="{{AdminConsentCheckboxPageSection.ConfirmationRequired}}"
+                          dependentSelector="{{AdminConsentCheckboxPageSection.StatusConfirmationRequired(consentCheckbox.confirmationRequired)}}"
+                          visible="false" stepKey="confirmationRequiredCheckbox"/>
+        <conditionalClick selector="{{AdminConsentCheckboxPageSection.HideCheckboxAfterConsent}}"
+                          dependentSelector="{{AdminConsentCheckboxPageSection.StatusHideCheckboxAfterConsent(consentCheckbox.hideAfterConsent)}}"
+                          visible="false" stepKey="hideAfterConsent"/>
+        <conditionalClick selector="{{AdminConsentCheckboxPageSection.LogTheConsent}}"
+                          dependentSelector="{{AdminConsentCheckboxPageSection.StatusLogTheConsent(consentCheckbox.logged)}}"
+                          visible="false" stepKey="enableLog"/>
+        <fillField selector="{{AdminConsentCheckboxPageSection.CheckboxPosition}}" userInput="{{consentCheckbox.checkboxPosition}}" stepKey="fillCheckboxPosition"/>
+        <selectOption selector="{{AdminConsentCheckboxPageSection.CheckboxLocation}}" userInput="{{consentCheckboxLocation}}" stepKey="selectCheckboxLocation"/>
+        <fillField selector="{{AdminConsentCheckboxPageSection.CheckboxText}}" userInput="{{consentCheckbox.checkboxText}}" stepKey="fillCheckboxText"/>
+        <click selector="{{AdminConsentCheckboxPageSection.SaveAndContinueEdit}}" stepKey="saveAndContinueEdit"/>
+        <waitForElement selector="{{AdminConsentCheckboxPageSection.SavedConsentMessage}}" stepKey="waitForCheckboxSaved"/>
+    </actionGroup>
+
+    <actionGroup name="AdminEditLocationConsentCheckboxActionGroup">
+        <arguments>
+            <argument name="consentCheckboxLocation"/>
+        </arguments>
+        <selectOption selector="{{AdminConsentCheckboxPageSection.CheckboxLocation}}" userInput="{{consentCheckboxLocation}}" stepKey="selectCheckboxLocation"/>
+        <click selector="{{AdminConsentCheckboxPageSection.SaveAndContinueEdit}}" stepKey="saveAndContinueEdit"/>
+        <waitForElement selector="{{AdminConsentCheckboxPageSection.SavedConsentMessage}}" stepKey="waitForCheckboxSaved"/>
+    </actionGroup>
+
+    <actionGroup name="AdminEditPositionConsentCheckboxActionGroup">
+        <arguments>
+            <argument name="checkboxPosition"/>
+        </arguments>
+        <fillField selector="{{AdminConsentCheckboxPageSection.CheckboxPosition}}" userInput="{{checkboxPosition}}" stepKey="fillCheckboxPosition"/>
+        <click selector="{{AdminConsentCheckboxPageSection.SaveAndContinueEdit}}" stepKey="saveAndContinueEdit"/>
+        <waitForElement selector="{{AdminConsentCheckboxPageSection.SavedConsentMessage}}" stepKey="waitForCheckboxSaved"/>
+    </actionGroup>
+
+    <actionGroup name="AdminCreateHideConsentCheckboxActionGroup" extends="AdminCreateConsentCheckboxActionGroup">
+        <remove keyForRemoval="enableLog"/>
+    </actionGroup>
+
+    <!--operations on consent checkboxes grid-->
+    <actionGroup name="AdminFindConsentCheckboxActionGroup">
+        <arguments>
+            <argument name="consentCheckbox" defaultValue="defaultConsentCheckbox.checkboxName"/>
+            <argument name="qtyRecordsFound" defaultValue="qtyRecordFound.1_record"/>
+        </arguments>
+        <amOnPage url="{{AdminConsentCheckboxesGrid.url}}" stepKey="openConsentCheckboxesGrid"/>
+        <waitForPageLoad stepKey="waitForConsentCheckboxesGridLoad"/>
+        <conditionalClick selector="{{AdminConsentCheckboxesGridSection.ClearAllFilters}}"
+                          dependentSelector="{{AdminConsentCheckboxesGridSection.ActiveFilters}}"
+                          visible="true" stepKey="clearAllFilters"/>
+        <waitForPageLoad stepKey="waitForCLearFilterDataLoad"/>
+        <conditionalClick selector="{{AdminConsentCheckboxesGridSection.FiltersButton}}"
+                          dependentSelector="{{AdminConsentCheckboxesGridSection.ApplyFilter}}"
+                          visible="false" stepKey="openFilter"/>
+        <fillField selector="{{AdminConsentCheckboxesGridSection.NameField}}" userInput="{{consentCheckbox}}" stepKey="fillCheckboxName"/>
+        <click selector="{{AdminConsentCheckboxesGridSection.ApplyFilter}}" stepKey="applyFilter"/>
+        <waitForPageLoad stepKey="waitForFilteredDataLoad"/>
+        <seeElement selector="{{AdminConsentCheckboxesGridSection.RecordsFoundMessage(qtyRecordsFound)}}" stepKey="seeCorrectQtyRecordsFound"/>
+    </actionGroup>
+
+    <actionGroup name="AdminOpenConsentCheckboxFromGridActionGroup">
+        <click selector="{{AdminConsentCheckboxesGridSection.EditConsentCheckbox}}" stepKey="openConsentCheckboxFromGrid"/>
+        <waitForPageLoad stepKey="waitForConsentCheckboxPageLoad"/>
+    </actionGroup>
+
+    <actionGroup name="AdminDeleteFromGridConsentCheckboxActionGroup">
+        <checkOption selector="{{AdminConsentCheckboxesGridSection.FirstRowCheckbox}}" stepKey="checkConsentCheckbox"/>
+        <click selector="{{AdminConsentCheckboxesGridSection.MassActions}}" stepKey="clickMassActionsButton"/>
+        <click selector="{{AdminConsentCheckboxesGridSection.DeleteMassAction}}" stepKey="clickDeleteMassActionButton"/>
+        <waitForPageLoad stepKey="waitForAcceptDeleteCheckboxButton"/>
+        <click selector="{{AdminConsentCheckboxesGridSection.AcceptDeleteCheckboxButton}}" stepKey="acceptDeleteCheckboxButton"/>
+        <waitForPageLoad stepKey="waitForDeleteCheckbox"/>
+        <seeElement selector="{{AdminConsentCheckboxesGridSection.RecordsFoundMessage(qtyRecordFound.0_record)}}" stepKey="seeCorrectQtyRecordsFound"/>
+    </actionGroup>
+</actionGroups>

@@ -1,0 +1,277 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <!-- ====== Logged in customer manage subscription ====== -->
+    <!-- Sellers -->
+    <route url="/V1/sellers/me" method="GET">
+        <service class="Lof\MarketPlace\Api\SellersRepositoryInterface" method="getCurrentSellers"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="PUT" url="/V1/saveprofile/me">
+        <service class="Lof\MarketPlace\Api\SellersRepositoryInterface" method="saveProfile"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="PUT" url="/V1/sellers">
+        <service class="Lof\MarketPlace\Api\SellersRepositoryInterface" method="saveSeller"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <route method="POST" url="/V1/sellermessages">
+        <service class="Lof\MarketPlace\Api\SellerMessageRepositoryInterface" method="ReplyMessage"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <!-- END MESSAGE -->
+    <!--=============. Product post .==============-->
+    <route url="/V1/assignproducts/:productId/:storeId" method="POST">
+        <service class="Lof\MarketPlace\Api\SellerProductInterface" method="assignProduct"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/createproduct" method="POST">
+        <service class="Lof\MarketPlace\Api\SellerProductInterface" method="createProduct"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <!-- END SELLERS -->
+    <!-- Sales -->
+    <route url="/V1/sellerorders/createorder/:orderId" method="POST">
+        <service class="Lof\MarketPlace\Api\SalesRepositoryInterface" method="createSellerOrder"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/getsellerorders" method="GET">
+        <service class="Lof\MarketPlace\Api\SalesRepositoryInterface" method="getSellerOrders"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/sellerordersbyid/:id" method="GET">
+        <service class="Lof\MarketPlace\Api\SalesRepositoryInterface" method="getSellerOrderById"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/sellerorders/:orderId/cancel" method="GET">
+        <service class="Lof\MarketPlace\Api\SalesRepositoryInterface" method="orderCancel"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/sellerinvoices" method="GET">
+        <service class="Lof\MarketPlace\Api\SalesInvoicesRepositoryInterface" method="getSellerInvoices"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/sellerinvoices/:InvoiceId" method="GET">
+        <service class="Lof\MarketPlace\Api\SalesInvoicesRepositoryInterface" method="getSellerInvoicesByID"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="POST" url="/V1/sellermessages">
+        <service class="Lof\MarketPlace\Api\SellerMessageRepositoryInterface" method="ReplyMessage"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <!-- Message -->
+    <route url="/V1/sellermessages" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerMessageRepositoryInterface" method="getSellerMessages"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/sellermessages/:messageId" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerMessageRepositoryInterface" method="getSellermessageById"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <!-- END SALES -->
+
+<!--    seller's product-->
+    <route url="/V1/sellersUpdateStock" method="PUT">
+        <service class="Lof\MarketPlace\Api\UpdateStockRepositoryInterface" method="saveSellerStock" />
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+    <route url="/V1/sellersUpdatePrice" method="PUT">
+        <service class="Lof\MarketPlace\Api\UpdateStockRepositoryInterface" method="saveSellerProductPrice" />
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+    <!-- END Seller's product -->
+    <!--========Transactions=========-->
+    <route url="/V1/gettransactions" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerTransactionsRepositoryInterface" method="getSellerTransactions" />
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+    <!--========End Transactions=========-->
+
+    <!-- ====. Frontend .=== -->
+    <route url="/V1/sellersproduct/:id" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerProductsRepositoryInterface" method="getListSellersProduct"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/getlistsellers" method="GET">
+        <service class="Lof\MarketPlace\Api\SellersFrontendRepositoryInterface" method="getListSellers"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/registernewseller" method="PUT">
+        <service class="Lof\MarketPlace\Api\SellersRepositoryInterface" method="registerNewSeller"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/getsellerbyid/:seller_id" method="GET">
+        <service class="Lof\MarketPlace\Api\SellersFrontendRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/sellersproducts/:seller_id" method="GET">
+        <service class="Lof\MarketPlace\Api\SellersFrontendRepositoryInterface" method="getSellersProducts"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/sellersreview/:seller_id" method="GET">
+        <service class="Lof\MarketPlace\Api\SellersFrontendRepositoryInterface" method="getSellersReviews"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/sellersrating/:seller_id" method="GET">
+        <service class="Lof\MarketPlace\Api\SellersFrontendRepositoryInterface" method="getSellersRating"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/sellersbyproductid/:product_id" method="GET">
+        <service class="Lof\MarketPlace\Api\SellersFrontendRepositoryInterface" method="getSellersbyProductID"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/sellerproducts" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerProductsRepositoryInterface" method="getSellerProducts"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+   <!--   ==== Vacation ====-->
+    <route url="/V1/getsellervacation" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerVacationRepositoryInterface" method="getSellerVacation"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/sellervacation" method="PUT">
+        <service class="Lof\MarketPlace\Api\SellerVacationRepositoryInterface" method="putSellerVacation"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <!-- Rating -->
+    <route url="/V1/getsellerratings" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerRatingsRepositoryInterface" method="getSellerRatings"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/sellerratings/:id" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerRatingsRepositoryInterface" method="getSellerRatingsByID"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <!-- END Rating -->
+    <!-- Review -->
+    <route url="/V1/sellerreviews" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerReviewRepositoryInterface" method="getSellerReviews"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/sellerreviews/:id" method="GET">
+        <service class="Lof\MarketPlace\Api\SellerReviewRepositoryInterface" method="getSellerReviewsByID"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <!-- END Review -->
+
+    <!--   ====== Admin Manager ====== -->
+    <route url="/V1/setcommission/:productId/:commission/:seller_id" method="POST">
+        <service class="Lof\MarketPlace\Api\SellerProductInterface" method="setCommissionForSpecialProduct"/>
+        <resources>
+            <resource ref="Lof_MarketPlace::sellerproduct"/>
+        </resources>
+    </route>
+
+</routes>

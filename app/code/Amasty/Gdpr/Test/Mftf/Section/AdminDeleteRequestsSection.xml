@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+    <!--delete requests grid-->
+    <section name="AdminDeleteRequestsGridSection">
+        <element name="FiltersButton" type="button" selector="//*[@class='admin__data-grid-header']//button[@data-action='grid-filter-expand']"/>
+        <element name="ActiveFilters" type="text" selector="//*[@class='admin__data-grid-header']//div[@class='admin__data-grid-filters-current _show']"/>
+        <element name="ClearAllFilters" type="button" selector="//*[@class='admin__data-grid-header']//button[@data-action='grid-filter-reset']"/>
+        <element name="ApplyFilter" type="button" selector="//button[@data-action='grid-filter-apply']"/>
+        <element name="EmailField" type="input" selector="//*[@name='email']"/>
+        <element name="RecordsFoundMessage" type="text" selector="//*[@class='admin__control-support-text'][contains(string(), '{{qty}} records found')]" parameterized="true"/>
+        <element name="FirstRowCheckbox" type="checkbox" selector="//tr[contains(@data-repeat-index, '0')]//input[contains(@data-action, 'select-row')]"/>
+        <element name="MassActions" type="button" selector="//*[@class='admin__data-grid-header-row row row-gutter']//*[@class='action-select-wrap']"/>
+        <element name="ApproveDelete" type="button" selector="//*[@class='admin__data-grid-header-row row row-gutter']//span[contains(string(), 'Approve Delete Request(s)')]"/>
+        <element name="DenyDelete" type="button" selector="//*[@class='admin__data-grid-header-row row row-gutter']//span[contains(string(), 'Deny Delete Request(s)')]"/>
+        <element name="AcceptActionButton" type="button" selector="//*[@class='action-primary action-accept']"/>
+        <element name="CustomerDeletedMessage" type="text" selector="//*[@class='messages'][contains(string(), '1 customer(s) has been successfully deleted')]"/>
+        <element name="CustomerNoDeletedMessage" type="text" selector="//*[@class='messages'][contains(string(), '1 email(s) has been sent')]"/>
+    </section>
+    <!--deny delete request page-->
+    <section name="AdminDenyDeleteRequestSection">
+        <element name="DenyComment" type="input" selector="//*[@name='comment']"/>
+        <element name="Send" type="button" selector="//*[@id='save']"/>
+    </section>
+</sections>

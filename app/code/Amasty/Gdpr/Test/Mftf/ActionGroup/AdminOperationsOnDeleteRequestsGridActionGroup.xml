@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+    <actionGroup name="AdminFindRecordOnDeleteRequestsByEmailActionGroup">
+        <arguments>
+            <argument name="customerEmail" type="string"/>
+            <argument name="qtyRecordsFound" defaultValue="qtyRecordFound.1_record"/>
+        </arguments>
+        <amOnPage url="{{AdminDeleteRequestsGrid.url}}" stepKey="openDeleteRequestsGrid"/>
+        <waitForPageLoad stepKey="waitForDeleteRequestsGridLoad"/>
+        <conditionalClick selector="{{AdminDeleteRequestsGridSection.ClearAllFilters}}"
+                          dependentSelector="{{AdminDeleteRequestsGridSection.ActiveFilters}}"
+                          visible="true" stepKey="clearAllFilters"/>
+        <waitForPageLoad stepKey="waitForCLearFilterDataLoad"/>
+        <conditionalClick selector="{{AdminDeleteRequestsGridSection.FiltersButton}}"
+                          dependentSelector="{{AdminDeleteRequestsGridSection.ApplyFilter}}"
+                          visible="false" stepKey="openFilter"/>
+        <fillField userInput="{{customerEmail}}" selector="{{AdminDeleteRequestsGridSection.EmailField}}" stepKey="fillCustomerEmail"/>
+        <click selector="{{AdminDeleteRequestsGridSection.ApplyFilter}}" stepKey="applyFilter"/>
+        <waitForPageLoad stepKey="waitForFilteredDataLoad"/>
+        <seeElement selector="{{AdminDeleteRequestsGridSection.RecordsFoundMessage(qtyRecordsFound)}}" stepKey="seeCorrectQtyRecordsFound"/>
+    </actionGroup>
+
+    <actionGroup name="AdminApproveDeleteRequestActionGroup">
+        <checkOption selector="{{AdminDeleteRequestsGridSection.FirstRowCheckbox}}" stepKey="checkRequestRecord"/>
+        <click selector="{{AdminDeleteRequestsGridSection.MassActions}}" stepKey="clickMassActionsButton"/>
+        <click selector="{{AdminDeleteRequestsGridSection.ApproveDelete}}" stepKey="actionWithRequest"/>
+        <waitForPageLoad stepKey="waitForActionWithRequest"/>
+        <click selector="{{AdminDeleteRequestsGridSection.AcceptActionButton}}" stepKey="acceptRequest"/>
+        <waitForPageLoad stepKey="waitForPageLoadAfterAction"/>
+        <seeElement selector="{{AdminDeleteRequestsGridSection.CustomerDeletedMessage}}" stepKey="seeMessageAfterAction"/>
+    </actionGroup>
+
+    <actionGroup name="AdminDenyDeleteRequestActionGroup" extends="AdminApproveDeleteRequestActionGroup">
+        <remove keyForRemoval="acceptRequest"/>
+        <click selector="{{AdminDeleteRequestsGridSection.DenyDelete}}" stepKey="actionWithRequest"/>
+        <fillField userInput="{{denyRequestMessage.message}}" selector="{{AdminDenyDeleteRequestSection.DenyComment}}" after="waitForActionWithRequest" stepKey="fillDenyMessage"/>
+        <click selector="{{AdminDenyDeleteRequestSection.Send}}" after="fillDenyMessage" stepKey="sendDenyMessage"/>
+        <waitForPageLoad stepKey="waitForPageLoadAfterAction"/>
+        <seeElement selector="{{AdminDeleteRequestsGridSection.CustomerNoDeletedMessage}}" stepKey="seeMessageAfterAction"/>
+    </actionGroup>
+</actionGroups>

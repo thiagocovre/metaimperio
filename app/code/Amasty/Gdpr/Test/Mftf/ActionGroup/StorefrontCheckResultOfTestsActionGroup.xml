@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+    <!--download personal data block-->
+    <actionGroup name="StorefrontCheckDownloadPersonalDataBlockIsAvailableActionGroup">
+        <amOnPage url="{{StorefrontPrivacySettingsPage.url}}" stepKey="openPrivacySettingsPage"/>
+        <waitForPageLoad stepKey="waitForPrivacySettingsPageLoad"/>
+        <seeElement selector="{{StorefrontPrivacySettingsSection.DownloadPersonalDataBlock}}" stepKey="checkBlock"/>
+    </actionGroup>
+
+    <actionGroup name="StorefrontCheckDownloadPersonalDataBlockIsNotAvailableActionGroup">
+        <amOnPage url="{{StorefrontPrivacySettingsPage.url}}" stepKey="openPrivacySettingsPage"/>
+        <waitForPageLoad stepKey="waitForPrivacySettingsPageLoad"/>
+        <dontSeeElement selector="{{StorefrontPrivacySettingsSection.DownloadPersonalDataBlock}}" stepKey="checkBlockIsNotAvailable"/>
+    </actionGroup>
+
+    <!--anonymise personal data block-->
+    <actionGroup name="StorefrontCheckAnonymisePersonalDataBlockIsAvailableActionGroup" extends="StorefrontCheckDownloadPersonalDataBlockIsAvailableActionGroup">
+        <seeElement selector="{{StorefrontPrivacySettingsSection.AnonymisePersonalDataBlock}}" stepKey="checkBlock"/>
+    </actionGroup>
+
+    <actionGroup name="StorefrontCheckAnonymisePersonalDataBlockIsNotAvailableActionGroup" extends="StorefrontCheckDownloadPersonalDataBlockIsNotAvailableActionGroup">
+        <dontSeeElement selector="{{StorefrontPrivacySettingsSection.AnonymisePersonalDataBlock}}" stepKey="checkBlockIsNotAvailable"/>
+    </actionGroup>
+
+    <!--delete account block-->
+    <actionGroup name="StorefrontCheckDeleteAccountBlockIsAvailableActionGroup" extends="StorefrontCheckDownloadPersonalDataBlockIsAvailableActionGroup">
+        <seeElement selector="{{StorefrontPrivacySettingsSection.DeleteAccountBlock}}" stepKey="checkBlock"/>
+    </actionGroup>
+
+    <actionGroup name="StorefrontCheckADeleteAccountBlockIsNotAvailableActionGroup" extends="StorefrontCheckDownloadPersonalDataBlockIsNotAvailableActionGroup">
+        <dontSeeElement selector="{{StorefrontPrivacySettingsSection.DeleteAccountBlock}}" stepKey="checkBlockIsNotAvailable"/>
+    </actionGroup>
+
+    <!--given consent block-->
+    <actionGroup name="StorefrontCheckGivenConsentBlockIsAvailableActionGroup" extends="StorefrontCheckDownloadPersonalDataBlockIsAvailableActionGroup">
+        <seeElement selector="{{StorefrontPrivacySettingsSection.GivenConsentBlock}}" stepKey="checkBlock"/>
+    </actionGroup>
+
+    <actionGroup name="StorefrontCheckGivenConsentBlockIsNotAvailableActionGroup" extends="StorefrontCheckDownloadPersonalDataBlockIsNotAvailableActionGroup">
+        <dontSeeElement selector="{{StorefrontPrivacySettingsSection.GivenConsentBlock}}" stepKey="checkBlockIsNotAvailable"/>
+    </actionGroup>
+
+    <!--customer registration form-->
+    <actionGroup name="StorefrontAssertNoMessageCustomerCreateAccountActionGroup" extends="AssertMessageCustomerCreateAccountActionGroup">
+        <dontSee userInput="{{message}}" selector="{{StorefrontCustomerAccountMainSection.messageByType(messageType)}}" stepKey="verifyMessage"/>
+    </actionGroup>
+
+    <!--contact us form-->
+    <actionGroup name="StorefrontAssertNoMessageContactUsFormActionGroup" extends="AssertMessageContactUsFormActionGroup">
+        <dontSee userInput="{{message}}" selector="{{StorefrontContactUsMessagesSection.messageByType(messageType)}}" stepKey="verifyMessage"/>
+    </actionGroup>
+
+    <!--consent checkbox conditions on the new customer account, contact us and newsletter block-->
+    <actionGroup name="StorefrontRequiredCheckboxBeforeActionActionGroup">
+        <arguments>
+            <argument name="consentCheckbox" defaultValue="defaultConsentCheckbox"/>
+        </arguments>
+        <seeElement selector="{{StorefrontConsentCheckboxSection.ConsentCheckbox(consentCheckbox.checkboxCode)}}" stepKey="assertConsentCheckbox"/>
+        <seeElement selector="{{StorefrontConsentCheckboxSection.CheckboxLabel(consentCheckbox.checkboxLabel)}}" stepKey="assertCheckboxLabel"/>
+        <dontSeeElement selector="{{StorefrontConsentCheckboxSection.RequiredFieldMessage(consentCheckbox.checkboxCode)}}" stepKey="assertRequiredFieldMessage"/>
+    </actionGroup>
+
+    <actionGroup name="StorefrontRequiredCheckboxAfterActionActionGroup" extends="StorefrontRequiredCheckboxBeforeActionActionGroup">
+        <seeElement selector="{{StorefrontConsentCheckboxSection.RequiredFieldMessage(consentCheckbox.checkboxCode)}}" stepKey="assertRequiredFieldMessage"/>
+    </actionGroup>
+
+    <!--consent checkbox conditions on the checkout-->
+    <actionGroup name="StorefrontRequiredCheckboxCheckoutBeforeActionActionGroup">
+        <arguments>
+            <argument name="consentCheckbox" defaultValue="defaultConsentCheckbox"/>
+        </arguments>
+        <seeElement selector="{{StorefrontConsentCheckboxSection.ConsentCheckboxCheckout(consentCheckbox.checkboxCode)}}" stepKey="assertConsentCheckbox"/>
+        <seeElement selector="{{StorefrontConsentCheckboxSection.ConsentCheckboxLabelCheckout(consentCheckbox.checkboxCode, consentCheckbox.checkboxLabel)}}" stepKey="assertCheckboxLabel"/>
+        <dontSeeElement selector="{{StorefrontConsentCheckboxSection.RequiredFieldMessageCheckout(consentCheckbox.checkboxCode)}}" stepKey="assertRequiredFieldMessage"/>
+    </actionGroup>
+
+    <actionGroup name="StorefrontRequiredCheckboxCheckoutAfterActionActionGroup" extends="StorefrontRequiredCheckboxCheckoutBeforeActionActionGroup">
+        <seeElement selector="{{StorefrontConsentCheckboxSection.RequiredFieldMessageCheckout(consentCheckbox.checkboxCode)}}" stepKey="assertRequiredFieldMessage"/>
+    </actionGroup>
+
+    <actionGroup name="StorefrontAttemptPlaceOrderWithoutConsentActionGroup" extends="StorefrontCreateOrderAsCustomerWithPaymentMethods">
+        <dontSeeElement selector="{{SuccessPageSection.SuccessMessage}}" stepKey="assertSuccessPage"/>
+    </actionGroup>
+
+    <!--privacy policy popup-->
+    <actionGroup name="StorefrontCheckPrivacyPolicyActionActionGroup">
+    <arguments>
+        <argument name="privacyPolicyText" type="string"/>
+    </arguments>
+        <seeElement selector="{{StorefrontPrivacyPolicyPopupSection.PrivacyPolicyText(privacyPolicyText)}}" stepKey="assertPrivacyPolicyText"/>
+    </actionGroup>
+
+    <!--customer Address Book and Edit Account Information pages-->
+    <actionGroup name="StorefrontAssertCustomerDefaultBillingAddress">
+        <arguments>
+            <argument name="customer"/>
+            <argument name="address"/>
+        </arguments>
+        <amOnPage url="{{StorefrontCustomerAddressesPage.url}}" stepKey="goToAddressPage"/>
+        <waitForPageLoad stepKey="waitForAddressPageLoad"/>
+        <dontSee selector="{{StorefrontCustomerAddressesSection.defaultBillingAddress}}" userInput="{{customer.firstName}}" stepKey="firstname"/>
+        <dontSee selector="{{StorefrontCustomerAddressesSection.defaultBillingAddress}}" userInput="{{customer.lastName}}" stepKey="lastname"/>
+        <dontSee selector="{{StorefrontCustomerAddressesSection.defaultBillingAddress}}" userInput="{{address.street}}" stepKey="street"/>
+        <dontSee selector="{{StorefrontCustomerAddressesSection.defaultBillingAddress}}" userInput="{{address.postcode}}" stepKey="postcode"/>
+        <dontSee selector="{{StorefrontCustomerAddressesSection.defaultBillingAddress}}" userInput="{{address.state}}" stepKey="state"/>
+        <dontSee selector="{{StorefrontCustomerAddressesSection.defaultBillingAddress}}" userInput="{{address.telephone}}" stepKey="telephone"/>
+    </actionGroup>
+
+    <actionGroup name="StorefrontAssertCustomerDefaultShippingAddress" extends="StorefrontAssertCustomerDefaultBillingAddress">
+        <dontSee selector="{{StorefrontCustomerAddressesSection.defaultShippingAddress}}" userInput="{{customer.firstName}}" stepKey="firstname"/>
+        <dontSee selector="{{StorefrontCustomerAddressesSection.defaultShippingAddress}}" userInput="{{customer.lastName}}" stepKey="lastname"/>
+        <dontSee selector="{{StorefrontCustomerAddressesSection.defaultShippingAddress}}" userInput="{{address.street}}" stepKey="street"/>
+        <dontSee selector="{{StorefrontCustomerAddressesSection.defaultShippingAddress}}" userInput="{{address.postcode}}" stepKey="postcode"/>
+        <dontSee selector="{{StorefrontCustomerAddressesSection.defaultShippingAddress}}" userInput="{{address.state}}" stepKey="state"/>
+        <dontSee selector="{{StorefrontCustomerAddressesSection.defaultShippingAddress}}" userInput="{{address.telephone}}" stepKey="telephone"/>
+    </actionGroup>
+
+    <actionGroup name="StorefrontAssertCustomerAccountInformation">
+        <arguments>
+            <argument name="customer"/>
+        </arguments>
+        <amOnPage url="{{StorefrontCustomerEditPage.url}}" stepKey="goToCustomerEditPage"/>
+        <waitForPageLoad stepKey="waitForCustomerEditPageLoad"/>
+        <dontSeeInField selector="{{StorefrontCustomerAccountInformationSection.firstName}}" userInput="{{customer.firstName}}" stepKey="firstName"/>
+        <dontSeeInField selector="{{StorefrontCustomerAccountInformationSection.lastName}}" userInput="{{customer.lastName}}" stepKey="lastName"/>
+    </actionGroup>
+
+    <!--assert no consent checkbox elements on the page. Use after open page with checkbox-->
+    <actionGroup name="StorefrontAssertNoConsentCheckboxElementsActionGroup">
+    <arguments>
+        <argument name="consentCheckbox" defaultValue="defaultConsentCheckbox"/>
+    </arguments>
+        <dontSeeElement selector="{{StorefrontConsentCheckboxSection.ConsentCheckbox(consentCheckbox.checkboxCode)}}" stepKey="dontSeeConsentCheckbox"/>
+        <dontSeeElement selector="{{StorefrontConsentCheckboxSection.PrivacyPolicyLink(consentCheckbox.checkboxLabel)}}" stepKey="dontSeePrivacyPolicy"/>
+    </actionGroup>
+
+    <!--assert consent checkboxes position-->
+    <actionGroup name="StorefrontAssertCheckboxPositionActionGroup">
+        <arguments>
+            <argument name="checkboxPosition"/>
+            <argument name="consentCheckbox"/>
+        </arguments>
+        <seeElement selector="{{StorefrontConsentCheckboxSection.PositionConsentCheckbox(checkboxPosition, consentCheckbox)}}" stepKey="seeConsentCheckboxPosition"/>
+    </actionGroup>
+</actionGroups>

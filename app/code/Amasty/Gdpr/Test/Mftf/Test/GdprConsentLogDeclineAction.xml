@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="GdprConsentLogDeclineAction" extends="GdprConsentLogAcceptAction">
+        <annotations>
+            <features value="Consent Checkbox. Consent Log"/>
+            <stories value="Log Record Is Appeared on the Consent Log Grid After Customer Create Account. Consent Is Decline in the Action Column"/>
+            <title value="Log Record Is Appeared on the Consent Log Grid After Customer Create Account. Consent Is Decline in the Action Column"/>
+            <description value="Check Log Record Is Appeared on the Consent Log Grid and Has Decline Action Type"/>
+            <severity value="MAJOR"/>
+            <testCaseId value="Gdpr-9"/>
+            <group value="Gdpr"/>
+            <group value="ConsentCheckbox"/>
+            <group value="ConsentLog"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="AdminCreateConsentCheckboxActionGroup" stepKey="createConsentCheckbox">
+                <argument name="consentCheckbox" value="logAndNoRequiredConsentCheckbox"/>
+            </actionGroup>
+        </before>
+
+        <remove keyForRemoval="checkConsentCheckbox"/>
+        <actionGroup ref="AdminCheckActionOnConsentLogActionGroup" stepKey="checkActionOnConsentLog">
+            <argument name="consentLogColumn" value="declineAction"/>
+        </actionGroup>
+    </test>
+</tests>

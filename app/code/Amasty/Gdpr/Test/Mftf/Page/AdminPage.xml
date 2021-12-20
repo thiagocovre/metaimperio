@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/PageObject.xsd">
+    <page name="AdminConfigurationPage" url="/admin/system_config/edit/section/amasty_gdpr/" area="admin" module="Gdpr">
+        <section name="AdminConfigurationSection"/>
+        <section name="AdminConfigurationCustomerAccountPrivacySettingsTabSection"/>
+        <section name="AdminConfigurationPersonalDataDeletionAndAnonymizationTabSection"/>
+    </page>
+
+    <page name="AdminConsentCheckboxesGrid" url="/amasty_gdpr/consents/" area="admin" module="Gdpr">
+        <section name="AdminConsentCheckboxesGridSection"/>
+    </page>
+
+    <page name="AdminConsentLogGrid" url="/amasty_gdpr/consentLog/index/" area="admin" module="Gdpr">
+        <section name="AdminConsentLogGridSection"/>
+    </page>
+
+    <page name="AdminPrivacyPolicyGrid" url="/amasty_gdpr/policy/" area="admin" module="Gdpr">
+        <section name="AdminPrivacyPolicyGridSection"/>
+    </page>
+
+    <page name="AdminActionLogGrid" url="/amasty_gdpr/actionLog/index/" area="admin" module="Gdpr">
+        <section name="AdminActionLogGridSection"/>
+    </page>
+
+    <page name="AdminDeleteRequestsGrid" url="/amasty_gdpr/request/index/" area="admin" module="Gdpr">
+        <section name="AdminDeleteRequestsGridSection"/>
+    </page>
+
+    <page name="AdminDenyDeleteRequestPage" url="/amasty_gdpr/request/deny/" area="admin" module="Gdpr">
+        <section name="AdminDenyDeleteRequestSection"/>
+    </page>
+</pages>

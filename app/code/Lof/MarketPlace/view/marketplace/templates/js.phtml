@@ -1,0 +1,61 @@
+<?php
+$type = $this->getTypeProduct();
+if(is_numeric($type )) {
+	$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+	$product = $objectManager->create('Magento\Catalog\Model\Product')->load($this->getTypeProduct());
+	$type = $product->getTypeId();
+} 
+?>
+<style type="text/css">
+	<?php if($type == 'configurable') { ?>
+		div[data-index="configurable"] {
+			display: block;
+		}
+	<?php } else { ?>
+		div[data-index="configurable"] {
+			display: none;
+		}
+	<?php  } ?>
+	<?php if(!$this->getProductId()) { ?>
+	div[data-index="status"] {
+		display: none;
+	}
+	<?php } else {
+		$product = $this->getProduct();
+		$approval = $product->getApproval();
+		if($approval != 2) {
+		 ?>
+		div[data-index="status"] {
+			display: none;
+		} 
+	<?php } 
+	}?>
+</style>
+<script>
+    require([
+    "jquery", 
+    "mage/translate", 
+    "mage/adminhtml/events", 
+    "mage/adminhtml/wysiwyg/tiny_mce/setup"
+    ], function(jQuery){
+    	jQuery('.main_container').click(function() { 
+	        wysiwygcompany_description = new wysiwygSetup("product_form_description", {
+	            "width":"99%",  // defined width of editor
+	            "height":"200px", // height of editor
+	            "plugins":[{"name":"image"}], // for image
+	            "tinymce4":{"toolbar":"formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link table charmap","plugins":"advlist autolink lists link charmap media noneditable table contextmenu paste code help table",
+	            }
+	        });
+	        wysiwygcompany_description.setup("exact");
+
+	         wysiwygcompany_description1 = new wysiwygSetup("product_form_short_description", {
+	            "width":"99%",  // defined width of editor
+	            "height":"200px", // height of editor
+	            "plugins":[{"name":"image"}], // for image
+	            "tinymce4":{"toolbar":"formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link table charmap","plugins":"advlist autolink lists link charmap media noneditable table contextmenu paste code help table",
+	            }
+	        });
+	        wysiwygcompany_description1.setup("exact");
+    	});
+    });
+</script>

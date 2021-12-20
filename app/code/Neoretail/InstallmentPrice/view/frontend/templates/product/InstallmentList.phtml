@@ -1,0 +1,41 @@
+<?php
+    $product = $block->getProduct();
+?>
+
+<p data-role="priceBox" id="installment-price-list"><?= __("Installment options") ?></p>
+<div id="installment-price-list-modal">wwwww</div>
+
+<script type="text/x-magento-init">
+    {
+        "#installment-price-list": {
+            "priceBoxInstallment": {
+                "priceConfig": <?= $block->getJsonConfig() ?>,
+                "installmentNumber": <?= $block->getInstallmentListNumber() ?>,
+                "productPrice": <?= $block->getFinalPrice() ?>,
+                "priceTemplate": "#product-installment-list",
+                "installmentListMode": true,
+                "installmentListMinAmount": <?= $block->getInstallmentMinAmount() ?>
+            }
+        },
+        "#installment-price-list-modal": {
+            "Magento_Ui/js/modal/modal": {
+                "type": "popup",
+                "title": "Popup title",
+                "modalClass": "opcoes-parcelamento",
+                "trigger": "#installment-price-list",
+                "buttons": []
+            }
+        }
+    }
+</script>
+
+<script id="product-installment-list" type="text/x-magento-template">
+    <div class='price-itens'>
+        <% _.each(data, function(installment) { %>
+            <div class="price-item">
+                <p class="number"><%- installment.number %>x</p>
+                <p class="value"><%- installment.price %></p>
+            </div>
+        <% }); %>
+    </div>
+</script>

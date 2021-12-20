@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+    <section name="AdminConfigurationSection">
+        <element name="SaveConfig" type="button" selector="//button[@id='save']"/>
+    </section>
+    <section name="AdminConfigurationGeneralTabSection">
+        <element name="GeneralTab" type="button" selector="//*[@id='amasty_gdpr_general-head']"/>
+        <element name="Enabled" type="select" selector="//*[@id='amasty_gdpr_general_enabled']"/>
+        <element name="LogAutoCleaning" type="select" selector="//*[@id='amasty_gdpr_general_auto_cleaning']"/>
+    </section>
+    <section name="AdminConfigurationCustomerAccountPrivacySettingsTabSection">
+        <element name="CustomerAccountPrivacySettingsTab" type="button" selector="//*[@id='amasty_gdpr_customer_access_control-head']"/>
+        <element name="AllowDownloadingPersonalData" type="select" selector="//*[@id='amasty_gdpr_customer_access_control_download']"/>
+        <element name="AllowAnonymizingPersonalData" type="select" selector="//*[@id='amasty_gdpr_customer_access_control_anonymize']"/>
+        <element name="AllowDeletingAccount" type="select" selector="//*[@id='amasty_gdpr_customer_access_control_delete']"/>
+        <element name="AllowOptingOutFromGivenConsent" type="select" selector="//*[@id='amasty_gdpr_customer_access_control_consent_opting']"/>
+    </section>
+    <section name="AdminConfigurationPersonalDataDeletionAndAnonymizationTabSection">
+        <element name="PersonalDataDeletionAndAnonymizationTab" type="button" selector="//*[@id='amasty_gdpr_personal_data-head']"/>
+        <element name="AutomaticPersonalDataDeletionTab" type="button" selector="//*[@id='amasty_gdpr_personal_data_automatic_personal_data_deletion-head']"/>
+        <element name="DeletePersonalDataOfAbandonedCustomerAccounts" type="select" selector="//*[@id='amasty_gdpr_personal_data_automatic_personal_data_deletion_personal_data_deletion']"/>
+        <element name="AbandonedCustomerAccountsAutomaticDeletion" type="select" selector="//*[@id='amasty_gdpr_personal_data_automatic_personal_data_deletion_personal_data_deletion_days']"/>
+        <element name="PreventDataDeletionOfRecentOrdersTab" type="button" selector="//*[@id='amasty_gdpr_personal_data_anonymization_data-head']"/>
+        <element name="DoNotDeletePersonalDataInRecentDocuments" type="select" selector="//*[@id='amasty_gdpr_personal_data_anonymization_data_personal_data_stored']"/>
+        <element name="DoNotAnonymizeDeleteDataForSpecifiedOrdersStatus" type="select" selector="//*[@id='amasty_gdpr_personal_data_anonymization_data_avoid_anonymisation']"/>
+        <element name="ForbidCustomerAnonymizationDeletionIfGiftRegistries" type="select" selector="//*[@id='amasty_gdpr_personal_data_anonymization_data_gift_registry_anonymisation']"/>
+    </section>
+</sections>

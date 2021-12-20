@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="GdprOptOutFromGivenConsent">
+        <annotations>
+            <features value="Opting Out from Given Consent"/>
+            <stories value="Customer Has Ability to Opt Out From Given Consent. Consent Checkbox Appears After Opting Out"/>
+            <title value="Customer Has Ability to Opt Out From Given Consent. Consent Checkbox Appears After Opting Out"/>
+            <description value="Check Consent Checkbox Appears After Opting Out by Customer"/>
+            <severity value="MAJOR"/>
+            <testCaseId value="Gdpr-26"/>
+            <group value="Gdpr"/>
+            <group value="CustomerAccountPrivacySettings"/>
+        </annotations>
+
+        <before>
+            <createData entity="Simple_US_Customer" stepKey="customer"/>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin"/>
+            <actionGroup ref="AdminConfigurationsAllowOptingOutConsentActionGroup" stepKey="setPrivacySettingsOption"/>
+            <actionGroup ref="AdminCreateHideConsentCheckboxActionGroup" stepKey="createConsentCheckbox">
+                <argument name="consentCheckbox" value="hideConsentCheckbox"/>
+                <argument name="consentCheckboxLocation" value="checkboxLocation.contactUs"/>
+            </actionGroup>
+        </before>
+        <after>
+            <actionGroup ref="AdminFindConsentCheckboxActionGroup" stepKey="findConsentCheckbox"/>
+            <actionGroup ref="AdminDeleteFromGridConsentCheckboxActionGroup" stepKey="deleteFromGridConsentCheckbox"/>
+            <actionGroup ref="logout" stepKey="logoutOfAdmin"/>
+            <deleteData createDataKey="customer" stepKey="deleteCustomer"/>
+        </after>
+
+        <actionGroup ref="LoginToStorefrontActionGroup" stepKey="loginToStorefront">
+            <argument name="Customer" value="$$customer$$"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontOpenContactUsPageActionGroup" stepKey="goToContactUsPage"/>
+        <actionGroup ref="StorefrontFillContactUsFormActionGroup" stepKey="fillContactUsForm">
+            <argument name="customer" value="Simple_US_Customer"/>
+            <argument name="contactUsData" value="DefaultContactUsData"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckConsentCheckboxActionGroup" stepKey="checkConsentCheckbox"/>
+        <actionGroup ref="StorefrontSubmitContactUsFormActionGroup" stepKey="submitContactUsForm"/>
+        <actionGroup ref="AssertMessageContactUsFormActionGroup" stepKey="verifySuccessMessage"/>
+        <actionGroup ref="StorefrontAssertNoConsentCheckboxElementsActionGroup" stepKey="assertNoConsentCheckboxElements"/>
+        <actionGroup ref="StorefrontOptOutFromGivenConsentActionGroup" stepKey="optOutFromGivenConsent"/>
+        <actionGroup ref="StorefrontOpenContactUsPageActionGroup" stepKey="goToContactUsPageAfterOptOut"/>
+        <actionGroup ref="StorefrontRequiredCheckboxBeforeActionActionGroup" stepKey="assertCheckboxElements"/>
+    </test>
+</tests>

@@ -1,0 +1,31 @@
+//
+// Styles for privacy policy popup
+// _______________________________________________
+
+//
+//  Common
+//  ----------------------------------------------
+
+& when (@media-common = true) {
+    .amgdpr-privacy-policy {
+        max-height: 500px;
+        display: none;
+        overflow-y: scroll;
+        word-wrap: break-word;
+    }
+
+    [data-amgdpr-content-from="subscription"] {
+        & {
+            display: table-row-group;
+            float: none !important;
+        }
+
+        input[type="checkbox"] {
+            margin-top: 8px;
+        }
+
+        label.label[for] {
+            position: unset;
+        }
+    }
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:DataGenerator/etc/dataProfileSchema.xsd">
+    <!--the same option for whole privacy settings configurations-->
+    <entity name="defaultConsentCheckbox" type="consentCheckbox">
+        <data key="checkboxName">Consent Checkbox Name 1</data>
+        <data key="checkboxCode">consent_checkbox_code_1</data>
+        <data key="enable">1</data>
+        <data key="confirmationRequired">1</data>
+        <data key="hideAfterConsent">0</data>
+        <data key="logged">0</data>
+        <data key="checkboxPosition">1</data>
+        <data key="checkboxText">I have read and accept the &lt;a href=&quot;{link}&quot;&gt;privacy policy&lt;/a&gt;</data>
+        <data key="checkboxLabel">I have read and accept the privacy policy</data>
+    </entity>
+
+    <entity name="logConsentCheckbox" extends="defaultConsentCheckbox">
+        <data key="logged">1</data>
+    </entity>
+
+    <entity name="logAndNoRequiredConsentCheckbox" extends="defaultConsentCheckbox">
+        <data key="confirmationRequired">0</data>
+        <data key="logged">1</data>
+    </entity>
+
+    <entity name="hideConsentCheckbox" extends="defaultConsentCheckbox">
+        <data key="hideAfterConsent">1</data>
+    </entity>
+
+    <entity name="secondPositionConsentCheckbox" extends="defaultConsentCheckbox">
+        <data key="checkboxName">Consent Checkbox Name 2</data>
+        <data key="checkboxCode">consent_checkbox_code_2</data>
+        <data key="checkboxPosition">2</data>
+    </entity>
+
+    <entity name="checkboxLocation" type="consentCheckboxLocation">
+        <data key="registration">registration</data>
+        <data key="checkout">checkout</data>
+        <data key="contactUs">contactus</data>
+        <data key="subscription">subscription</data>
+    </entity>
+</entities>

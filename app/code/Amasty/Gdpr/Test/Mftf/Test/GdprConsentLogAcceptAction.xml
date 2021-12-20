@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="GdprConsentLogAcceptAction">
+        <annotations>
+            <features value="Consent Checkbox. Consent Log"/>
+            <stories value="Log Record Is Appeared on the Consent Log Grid After Customer Create Account. Consent Is Accept in the Action Column"/>
+            <title value="Log Record Is Appeared on the Consent Log Grid After Customer Create Account. Consent Is Accept in the Action Column"/>
+            <description value="Check Log Record Is Appeared on the Consent Log Grid and Has Accept Action Type"/>
+            <severity value="MAJOR"/>
+            <testCaseId value="Gdpr-8"/>
+            <group value="Gdpr"/>
+            <group value="ConsentCheckbox"/>
+            <group value="ConsentLog"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin"/>
+            <actionGroup ref="AdminCreateConsentCheckboxActionGroup" stepKey="createConsentCheckbox">
+                <argument name="consentCheckbox" value="logConsentCheckbox"/>
+            </actionGroup>
+        </before>
+        <after>
+            <actionGroup ref="AdminFindConsentCheckboxActionGroup" stepKey="findConsentCheckbox"/>
+            <actionGroup ref="AdminDeleteFromGridConsentCheckboxActionGroup" stepKey="deleteFromGridConsentCheckbox"/>
+            <actionGroup ref="logout" stepKey="logoutOfAdmin"/>
+        </after>
+
+        <actionGroup ref="StorefrontOpenCustomerAccountCreatePageActionGroup" stepKey="openCreateAccountPage"/>
+        <actionGroup ref="StorefrontFillCustomerAccountCreationFormActionGroup" stepKey="createNewCustomerAccount">
+            <argument name="customer" value="Simple_US_Customer" />
+        </actionGroup>
+        <grabValueFrom selector="{{StorefrontCustomerCreateFormSection.emailField}}" stepKey="grabCustomerEmail"/>
+        <actionGroup ref="StorefrontCheckConsentCheckboxActionGroup" stepKey="checkConsentCheckbox"/>
+        <actionGroup ref="StorefrontClickCreateAnAccountCustomerAccountCreationFormActionGroup" stepKey="clickCreateCustomerAccountAfterAgreeWithPolicy"/>
+        <actionGroup ref="AssertMessageCustomerCreateAccountActionGroup" stepKey="assertSuccessMessage"/>
+        <actionGroup ref="AdminFindRecordOnConsentLogByEmailActionGroup" stepKey="findRecordOnConsentLogByEmail">
+            <argument name="customerEmail" value="$grabCustomerEmail"/>
+        </actionGroup>
+        <actionGroup ref="AdminCheckActionOnConsentLogActionGroup" stepKey="checkActionOnConsentLog"/>
+        <actionGroup ref="AdminDeleteConsentLogRecordActionGroup" stepKey="deleteLogRecord"/>
+    </test>
+</tests>
