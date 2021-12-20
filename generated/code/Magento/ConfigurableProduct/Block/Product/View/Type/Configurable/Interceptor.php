@@ -17,6 +17,15 @@ class Interceptor extends \Magento\ConfigurableProduct\Block\Product\View\Type\C
     /**
      * {@inheritdoc}
      */
+    public function getJsonConfig()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getJsonConfig');
+        return $pluginInfo ? $this->___callPlugins('getJsonConfig', func_get_args(), $pluginInfo) : parent::getJsonConfig();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getImage($product, $imageId, $attributes = [])
     {
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getImage');

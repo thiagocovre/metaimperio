@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="GdprUpdatePrivacyPolicyContactUs" extends="GdprNewPrivacyPolicyOnNewCustomerAccount">
+        <annotations>
+            <features value="Privacy Policy"/>
+            <stories value="Update Privacy Policy. Old Version of the Privacy Policy Is Replaced by the New Version"/>
+            <title value="Update Privacy Policy. Old Version of the Privacy Policy Is Replaced by the New Version"/>
+            <description value="Check the New Consent Record Is on the Consent Log Grid After Consent With New Privacy Policy Version"/>
+            <severity value="MAJOR"/>
+            <testCaseId value="Gdpr-11"/>
+            <group value="Gdpr"/>
+            <group value="ConsentCheckbox"/>
+            <group value="PrivacyPolicy"/>
+        </annotations>
+
+        <!--change consent checkbox location-->
+        <actionGroup ref="AdminFindConsentCheckboxActionGroup" stepKey="findConsentCheckbox"/>
+        <actionGroup ref="AdminOpenConsentCheckboxFromGridActionGroup" stepKey="openConsentCheckboxFromGrid"/>
+        <actionGroup ref="AdminEditLocationConsentCheckboxActionGroup" stepKey="editLocationConsentCheckbox">
+            <argument name="consentCheckboxLocation" value="checkboxLocation.contactUs"/>
+        </actionGroup>
+        <!--update privacy policy version-->
+        <actionGroup ref="AdminFindPolicyOnGridByStatusActionGroup" stepKey="findPolicyOnGridForEdit"/>
+        <actionGroup ref="AdminOpenPrivacyPolicyForEditActionGroup" stepKey="openPrivacyPolicyForChangeVersion"/>
+        <actionGroup ref="expandPageBuilderPanelMenuSection" stepKey="expandPageBuilderPanelMenu">
+            <argument name="contentType" value="PageBuilderTextContentType"/>
+        </actionGroup>
+        <actionGroup ref="dragContentTypeToStage" stepKey="dragTextIntoStageOnceAgain">
+            <argument name="contentType" value="PageBuilderTextContentType"/>
+        </actionGroup>
+        <actionGroup ref="inlineEditTextAreaFromStage" stepKey="fillNewPrivacyPolicyText">
+            <argument name="contentType" value="PageBuilderTextContentType"/>
+            <argument name="content" value="{{updatedPrivacyPolicy.policyContent}}"/>
+        </actionGroup>
+        <actionGroup ref="AdminCreatePrivacyPolicyActionGroup" stepKey="createNewPrivacyPolicy"/>
+        <!--check privacy policy version for the same customer-->
+        <actionGroup ref="StorefrontOpenContactUsPageActionGroup" stepKey="goToContactUsPage"/>
+        <actionGroup ref="StorefrontOpenPrivacyPolicyPopupActionGroup" stepKey="openPrivacyPolicyOnContactUs"/>
+        <actionGroup ref="StorefrontCheckPrivacyPolicyActionActionGroup" stepKey="checkNewPrivacyPolicyText">
+            <argument name="privacyPolicyText" value="{{updatedPrivacyPolicy.policyContent}}"/>
+        </actionGroup>
+        <!--remove policy text after update policy version-->
+        <actionGroup ref="AdminFindPolicyOnGridByStatusActionGroup" stepKey="findPolicyOnGridAfterUpdatePolicy"/>
+        <actionGroup ref="AdminOpenPrivacyPolicyForEditActionGroup" stepKey="openPrivacyPolicyAfterUpdatePolicy"/>
+        <actionGroup ref="removeContentTypeFromStage" stepKey="removeTabsAfterUpdatePolicy">
+            <argument name="contentType" value="PageBuilderTextContentType"/>
+            <argument name="offsetYCoordinate" value="10"/>
+        </actionGroup>
+        <actionGroup ref="AdminCreatePrivacyPolicyActionGroup" stepKey="savePrivacyPolicyAfterUpdatePolicy"/>
+    </test>
+</tests>

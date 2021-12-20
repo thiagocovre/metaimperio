@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:DataGenerator/etc/dataProfileSchema.xsd">
+    <entity name="defaultPrivacyPolicy" type="newPrivacyPolicy">
+        <data key="comment">new Privacy Policy</data>
+        <data key="version" unique="suffix">v-</data>
+        <data key="status">1</data>
+        <data key="policyContent" unique="suffix">Policy text </data>
+    </entity>
+    <entity name="updatedPrivacyPolicy" type="newPrivacyPolicy">
+        <data key="policyContent" unique="suffix">Updated policy text </data>
+    </entity>
+
+    <!--the same option for whole privacy settings configurations-->
+    <entity name="status" type="policyStatusGrid">
+        <data key="draft">Draft</data>
+        <data key="disabled">Disabled</data>
+        <data key="enabled">Enabled</data>
+    </entity>
+</entities>

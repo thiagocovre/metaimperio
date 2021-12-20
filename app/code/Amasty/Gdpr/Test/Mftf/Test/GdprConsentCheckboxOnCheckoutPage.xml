@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="GdprConsentCheckboxOnCheckoutPage">
+        <annotations>
+            <features value="Consent Checkbox"/>
+            <stories value="Consent Checkbox Is on the Checkout Page"/>
+            <title value="Consent Checkbox Is on the Checkout Page"/>
+            <description value="Check Consent Checkbox Is Appeared on the Checkout Page"/>
+            <severity value="MAJOR"/>
+            <testCaseId value="Gdpr-14"/>
+            <group value="Gdpr"/>
+            <group value="ConsentCheckbox"/>
+        </annotations>
+
+        <before>
+            <createData entity="SimpleSubCategory" stepKey="simpleCategory"/>
+            <createData entity="SimpleProductByFusionBackpack" stepKey="simpleProduct">
+                <requiredEntity createDataKey="simpleCategory"/>
+            </createData>
+            <createData entity="Simple_US_Customer" stepKey="customer"/>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin"/>
+            <actionGroup ref="AdminCreateConsentCheckboxActionGroup" stepKey="createConsentCheckbox">
+                <argument name="consentCheckboxLocation" value="checkboxLocation.checkout"/>
+            </actionGroup>
+        </before>
+        <after>
+            <actionGroup ref="AdminFindConsentCheckboxActionGroup" stepKey="findConsentCheckbox"/>
+            <actionGroup ref="AdminDeleteFromGridConsentCheckboxActionGroup" stepKey="deleteFromGridConsentCheckbox"/>
+            <actionGroup ref="logout" stepKey="logoutOfAdmin"/>
+            <deleteData createDataKey="simpleProduct" stepKey="deleteProduct"/>
+            <deleteData createDataKey="simpleCategory" stepKey="deleteCategory"/>
+            <deleteData createDataKey="customer" stepKey="deleteCustomer"/>
+        </after>
+
+        <actionGroup ref="LoginToStorefrontActionGroup" stepKey="loginToStorefront">
+            <argument name="Customer" value="$$customer$$"/>
+        </actionGroup>
+        <actionGroup ref="AddCreatedProductToCart" stepKey="addCreatedSimpleProductToCart">
+            <argument name="valueQty" value="_enterQty1"/>
+            <argument name="product" value="$$simpleProduct$$"/>
+        </actionGroup>
+        <actionGroup ref="AmastyCreateOrderAsCustomerOnCheckoutShippingPage" stepKey="createOrderAsCustomerOnCheckoutShippingPage">
+            <argument name="shippingMethodsOnCheckout" value="FlatRateMethod"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontRequiredCheckboxCheckoutBeforeActionActionGroup" stepKey="assertCheckboxBeforePlaceOrder"/>
+        <actionGroup ref="StorefrontCheckConsentCheckboxCheckoutActionGroup" stepKey="checkConsentCheckbox"/>
+        <actionGroup ref="StorefrontCreateOrderAsCustomerWithPaymentMethods" stepKey="createOrder">
+            <argument name="paymentMethods" value="paymentCheckMoneyOrder"/>
+        </actionGroup>
+    </test>
+</tests>

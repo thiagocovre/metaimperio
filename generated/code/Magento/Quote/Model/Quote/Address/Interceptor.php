@@ -17,6 +17,15 @@ class Interceptor extends \Magento\Quote\Model\Quote\Address implements \Magento
     /**
      * {@inheritdoc}
      */
+    public function validate()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'validate');
+        return $pluginInfo ? $this->___callPlugins('validate', func_get_args(), $pluginInfo) : parent::validate();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function afterSave()
     {
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'afterSave');

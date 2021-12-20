@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="GdprNewPrivacyPolicyOnNewCustomerAccount">
+        <annotations>
+            <features value="Privacy Policy"/>
+            <stories value="Create New Privacy Policy. Privacy Policy Is on the Modal Window on the New Customer Creation Page"/>
+            <title value="Create New Privacy Policy. Privacy Policy Is on the Modal Window on the New Customer Creation Page"/>
+            <description value="Check the Actual Privacy Policy Version Is Appeared on the New Customer Creation Page"/>
+            <severity value="MAJOR"/>
+            <testCaseId value="Gdpr-10"/>
+            <group value="Gdpr"/>
+            <group value="ConsentCheckbox"/>
+            <group value="PrivacyPolicy"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin"/>
+            <actionGroup ref="AdminCreateConsentCheckboxActionGroup" stepKey="createConsentCheckbox"/>
+        </before>
+        <after>
+            <actionGroup ref="AdminFindConsentCheckboxActionGroup" stepKey="findConsentCheckbox"/>
+            <actionGroup ref="AdminDeleteFromGridConsentCheckboxActionGroup" stepKey="deleteFromGridConsentCheckbox"/>
+            <actionGroup ref="logout" stepKey="logoutOfAdmin"/>
+        </after>
+
+        <!--create new privacy policy-->
+        <actionGroup ref="AdminFindPolicyOnGridByStatusActionGroup" stepKey="findPolicyOnGridByStatus"/>
+        <actionGroup ref="AdminOpenPrivacyPolicyForEditActionGroup" stepKey="openPrivacyPolicyForEdit"/>
+        <actionGroup ref="expandPageBuilderPanelMenuSection" stepKey="expandPageBuilderPanelMenuSection">
+            <argument name="contentType" value="PageBuilderTextContentType"/>
+        </actionGroup>
+        <actionGroup ref="dragContentTypeToStage" stepKey="dragTextIntoStage">
+            <argument name="contentType" value="PageBuilderTextContentType"/>
+        </actionGroup>
+        <actionGroup ref="inlineEditTextAreaFromStage" stepKey="fillPrivacyPolicyText">
+            <argument name="contentType" value="PageBuilderTextContentType"/>
+            <argument name="content" value="{{defaultPrivacyPolicy.policyContent}}"/>
+        </actionGroup>
+        <actionGroup ref="AdminCreatePrivacyPolicyActionGroup" stepKey="createPrivacyPolicy"/>
+        <!--check privacy policy text on the front-->
+        <actionGroup ref="StorefrontOpenCustomerAccountCreatePageActionGroup" stepKey="openCreateAccountPage"/>
+        <actionGroup ref="StorefrontOpenPrivacyPolicyPopupActionGroup" stepKey="openPrivacyPolicyWindow"/>
+        <actionGroup ref="StorefrontCheckPrivacyPolicyActionActionGroup" stepKey="checkPrivacyPolicyText">
+            <argument name="privacyPolicyText" value="{{defaultPrivacyPolicy.policyContent}}"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontAcceptPrivacyPolicyPopupActionGroup" stepKey="closePrivacyPolicyPopup"/>
+        <actionGroup ref="StorefrontFillCustomerAccountCreationFormActionGroup" stepKey="createNewCustomerAccount">
+            <argument name="customer" value="Simple_US_Customer" />
+        </actionGroup>
+        <actionGroup ref="StorefrontClickCreateAnAccountCustomerAccountCreationFormActionGroup" stepKey="clickCreateCustomerAccountAfterAgreeWithPolicy"/>
+        <actionGroup ref="AssertMessageCustomerCreateAccountActionGroup" stepKey="assertSuccessMessage"/>
+        <!--remove policy text-->
+        <actionGroup ref="AdminFindPolicyOnGridByStatusActionGroup" stepKey="findPolicyOnGrid"/>
+        <actionGroup ref="AdminOpenPrivacyPolicyForEditActionGroup" stepKey="openPrivacyPolicy"/>
+        <actionGroup ref="removeContentTypeFromStage" stepKey="removeTabs">
+            <argument name="contentType" value="PageBuilderTextContentType"/>
+            <argument name="offsetYCoordinate" value="10"/>
+        </actionGroup>
+        <actionGroup ref="AdminCreatePrivacyPolicyActionGroup" stepKey="savePrivacyPolicy"/>
+    </test>
+</tests>

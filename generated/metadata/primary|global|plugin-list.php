@@ -208,14 +208,6 @@
         'instance' => 'Magento\\WebapiSecurity\\Model\\Plugin\\CacheInvalidator',
       ),
     ),
-    'Magento\\Backend\\Model\\Url' => 
-    array (
-      'fixDefaultUrl' => 
-      array (
-        'sortOrder' => 0,
-        'instance' => 'Magento\\TwoFactorAuth\\Plugin\\FirstAvailableMenu',
-      ),
-    ),
     'Magento\\Authorization\\Model\\Role' => 
     array (
       'updateRoleUsersAcl' => 
@@ -430,6 +422,14 @@
       array (
         'sortOrder' => 0,
         'instance' => 'Magento\\Catalog\\Model\\Indexer\\Category\\Product\\Plugin\\MviewState',
+      ),
+    ),
+    'Magento\\Catalog\\Helper\\Product' => 
+    array (
+      'seller_product_permission' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Lof\\MarketPlace\\Model\\Plugin\\ViewProduct',
       ),
     ),
     'Magento\\Store\\Model\\ResourceModel\\Website' => 
@@ -921,6 +921,14 @@
         'instance' => 'Magento\\Cron\\Model\\Backend\\Config\\Structure\\Converter',
       ),
     ),
+    'Magento\\Framework\\View\\TemplateEngine\\Php' => 
+    array (
+      'Amasty_Base::AddEscaperToPhpRenderer' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Amasty\\Base\\Plugin\\Framework\\View\\TemplateEngine\\Php',
+      ),
+    ),
     'Magento\\Framework\\App\\RouterInterface' => 
     array (
       'csp_aware_plugin' => 
@@ -983,6 +991,14 @@
       array (
         'sortOrder' => 50,
         'instance' => 'Magento\\Deploy\\Model\\Plugin\\ConfigChangeDetector',
+      ),
+    ),
+    'Magento\\Framework\\View\\Result\\Page' => 
+    array (
+      'updateBodyClass' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Smartwave\\Porto\\Plugin\\UpdateBodyClass',
       ),
     ),
     'Magento\\Checkout\\Block\\Cart\\LayoutProcessor' => 
@@ -1263,6 +1279,7 @@
       'save_order_tax' => 
       array (
         'sortOrder' => 0,
+        'disabled' => true,
         'instance' => 'Magento\\Tax\\Model\\Plugin\\OrderSave',
       ),
       'addVertexCustomerCountryToOrderAddress' => 
@@ -1282,6 +1299,11 @@
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\PageCache\\Model\\App\\CacheIdentifierPlugin',
+      ),
+      'mplayerPagecacheIdentifier' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Mageplaza\\LayeredNavigation\\Plugin\\PageCache\\Identifier',
       ),
     ),
     'Magento\\Framework\\App\\PageCache\\Cache' => 
@@ -2179,6 +2201,11 @@
         'sortOrder' => 20,
         'instance' => 'Magento\\SalesRule\\Plugin\\CouponUsagesIncrement',
       ),
+      'lofmp-splitorder-split-quote' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'Lofmp\\SplitOrder\\Plugin\\SplitQuote',
+      ),
     ),
     'Magento\\Sales\\Api\\Data\\OrderPaymentInterface' => 
     array (
@@ -2432,6 +2459,54 @@
         'instance' => 'Magento\\Wishlist\\Controller\\Index\\Plugin',
       ),
     ),
+    'Amasty\\Gdpr\\Model\\ResourceModel\\WithoutConsent\\Grid\\Collection' => 
+    array (
+      'amastyWithoutConsentCollection' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Amasty\\Gdpr\\Plugin\\WithoutConsent\\Grid\\Collection',
+      ),
+    ),
+    'Magento\\Customer\\Model\\Address\\AbstractAddress' => 
+    array (
+      'AmastyGdprAdressAnonymization' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Amasty\\Gdpr\\Plugin\\Customer\\Model\\Address\\AbstractAddressPlugin',
+      ),
+    ),
+    'Magento\\Directory\\Model\\ResourceModel\\Country' => 
+    array (
+      'AmastyGdprAnonymizatedAddressLoad' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Amasty\\Gdpr\\Plugin\\Directory\\Model\\ResourceModel\\CountryPlugin',
+      ),
+    ),
+    'Magento\\Catalog\\Cron\\RefreshSpecialPrices' => 
+    array (
+      'Amasty_Label::detect-refresh-price' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Amasty\\Label\\Plugin\\Catalog\\Indexer\\Product\\Price',
+      ),
+    ),
+    'Magento\\Catalog\\Model\\Indexer\\Product\\Price' => 
+    array (
+      'Amasty_Label::reindex-label-price-changes' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Amasty\\Label\\Plugin\\Catalog\\Indexer\\Product\\Price',
+      ),
+    ),
+    'Magento\\Framework\\App\\Config\\ScopeCodeResolver' => 
+    array (
+      'Amasty_Label::clean-scope-code' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Amasty\\Label\\Plugin\\App\\Config\\ScopeCodeResolver',
+      ),
+    ),
     'Magento\\Checkout\\CustomerData\\Cart' => 
     array (
       'amazon_core_cart_section' => 
@@ -2667,12 +2742,28 @@
         'instance' => 'Klarna\\KpGraphQl\\Plugin\\Model\\Resolver\\AvailablePaymentMethodsPlugin',
       ),
     ),
+    'Magento\\Framework\\App\\PageCache\\Kernel' => 
+    array (
+      'mplayerProcessRequest' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Mageplaza\\LayeredNavigation\\Plugin\\PageCache\\ProcessRequest',
+      ),
+    ),
     'Magento\\Framework\\View\\Asset\\Minification' => 
     array (
       'braintreeExcludeFromMinification' => 
       array (
         'sortOrder' => 0,
         'instance' => 'PayPal\\Braintree\\Plugin\\ExcludeFromMinification',
+      ),
+    ),
+    'Magento\\Catalog\\Pricing\\Render\\FinalPriceBox' => 
+    array (
+      'Sw_Dailydeals_change_template' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Smartwave\\Dailydeals\\Plugin\\FinalPricePlugin',
       ),
     ),
     'Vertex\\Utility\\SoapClientFactory' => 
@@ -3364,7 +3455,7 @@
         'instance' => 'Magento\\Theme\\Plugin\\Data\\Collection',
       ),
     ),
-    'Magento\\CatalogSearch\\Model\\ResourceModel\\Fulltext\\Collection' => 
+    'Mageplaza\\LayeredNavigation\\Model\\ResourceModel\\Fulltext\\Collection' => 
     array (
       'currentPageDetection' => 
       array (
@@ -3390,6 +3481,14 @@
     'Magento\\CatalogSearch\\Model\\Layer\\Search\\Context' => NULL,
     'Magento\\Elasticsearch\\Model\\Layer\\Search\\Context' => NULL,
     'Magento\\Elasticsearch\\Model\\Layer\\Category\\Context' => NULL,
+    'Magento\\CatalogSearch\\Model\\ResourceModel\\Fulltext\\Collection' => 
+    array (
+      'currentPageDetection' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Theme\\Plugin\\Data\\Collection',
+      ),
+    ),
     'elasticsearchFulltextSearchCollection' => 
     array (
       'currentPageDetection' => 
@@ -3622,8 +3721,22 @@
     'Magento\\Framework\\Controller\\ResultInterface' => NULL,
     'Magento\\Framework\\Controller\\AbstractResult' => NULL,
     'Magento\\Framework\\View\\Result\\Layout' => NULL,
-    'Magento\\Framework\\View\\Result\\Page' => NULL,
-    'robotsResultPage' => NULL,
+    'Magento\\Framework\\View\\Result\\Page' => 
+    array (
+      'updateBodyClass' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Smartwave\\Porto\\Plugin\\UpdateBodyClass',
+      ),
+    ),
+    'robotsResultPage' => 
+    array (
+      'updateBodyClass' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Smartwave\\Porto\\Plugin\\UpdateBodyClass',
+      ),
+    ),
     'Magento\\Framework\\View\\Result\\PageFactory' => NULL,
     'robotsResultPageFactory' => NULL,
     'Magento\\Elasticsearch6\\Model\\Client\\ElasticsearchFactory' => NULL,
@@ -3650,7 +3763,14 @@
     'Magento\\Elasticsearch7\\Model\\Adapter\\FieldMapper\\Product\\FieldProvider\\FieldName\\Resolver\\CompositeResolver' => NULL,
     'Magento\\Elasticsearch7\\Model\\Adapter\\FieldMapper\\ProductFieldMapper' => NULL,
     'Magento\\Elasticsearch7\\Setup\\InstallConfig' => NULL,
-    'securitytxtResultPage' => NULL,
+    'securitytxtResultPage' => 
+    array (
+      'updateBodyClass' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Smartwave\\Porto\\Plugin\\UpdateBodyClass',
+      ),
+    ),
     'securitytxtResultPageFactory' => NULL,
     'Magento\\Tax\\Model\\Api\\SearchCriteria\\TaxRateCollectionProcessor' => NULL,
     'Magento\\Tax\\Model\\Api\\SearchCriteria\\CollectionProcessor\\TaxRateFilterProcessor' => NULL,
@@ -3674,12 +3794,6 @@
     'dataProviderCompositeRenderer' => NULL,
     'translationConfigInitialDataProvider' => NULL,
     'translationConfigSourceAggregated' => NULL,
-    'Magento\\TwoFactorAuth\\Api\\ProviderInterface' => NULL,
-    'Magento\\TwoFactorAuth\\Model\\Provider' => NULL,
-    'Magento\\TwoFactorAuth\\Model\\Provider\\Google' => NULL,
-    'Magento\\TwoFactorAuth\\Model\\Provider\\DuoSecurity' => NULL,
-    'Magento\\TwoFactorAuth\\Model\\Provider\\Authy' => NULL,
-    'Magento\\TwoFactorAuth\\Model\\Provider\\U2fKey' => NULL,
     'Magento\\Webapi\\Model\\Rest\\Config' => NULL,
     'Magento\\WebapiAsync\\Model\\VirtualType\\Rest\\Config' => NULL,
     'Magento\\Webapi\\Controller\\Rest\\Router' => NULL,
@@ -3701,6 +3815,22 @@
     'Magento\\WebapiAsync\\Controller\\Rest\\VirtualType\\AsynchronousBulkSchemaRequestProcessor' => NULL,
     'Magento\\Catalog\\Block\\Product\\Context' => NULL,
     'Magento\\Wishlist\\Block\\Context' => NULL,
+    'Amasty\\Gdpr\\Model\\ResourceModel\\ConsentQueue\\Grid\\Collection' => 
+    array (
+      'currentPageDetection' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Theme\\Plugin\\Data\\Collection',
+      ),
+    ),
+    'Amasty\\Label\\Model\\ResourceModel\\Labels\\Grid\\Collection' => 
+    array (
+      'currentPageDetection' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Theme\\Plugin\\Data\\Collection',
+      ),
+    ),
     'Magento\\Framework\\HTTP\\PhpEnvironment\\RemoteAddress' => NULL,
     'Amazon_Core_RemoteAddressWithAdditionalIpHeaders' => NULL,
     'Magento\\Payment\\Model\\SaleOperationInterface' => NULL,
@@ -3811,6 +3941,40 @@
     'KPConfig' => NULL,
     'KPConfigValueHandler' => NULL,
     'KPValueHandlerPool' => NULL,
+    'Magento\\Framework\\View\\Element\\UiComponent\\DataProvider\\FilterPool' => NULL,
+    'SellerGirdFilterPool' => NULL,
+    'Magento\\Ui\\DataProvider\\AbstractDataProvider' => NULL,
+    'Lof\\MarketPlace\\Ui\\DataProvider\\Seller\\WithdrawalDataProvider' => NULL,
+    'WithdrawalGridDataProvider' => NULL,
+    'Lof\\MarketPlace\\Ui\\DataProvider\\Seller\\RefundDataProvider' => NULL,
+    'RefundGridDataProvider' => NULL,
+    'Lof\\MarketPlace\\Ui\\DataProvider\\Seller\\MessageDataProvider' => NULL,
+    'MessageGridDataProvider' => NULL,
+    'Lof\\MarketPlace\\Ui\\DataProvider\\Seller\\AmountDataProvider' => NULL,
+    'AmountGridDataProvider' => NULL,
+    'Lof\\MarketPlace\\Ui\\DataProvider\\Seller\\AmounttransactionDataProvider' => NULL,
+    'AmounttransactionGridDataProvider' => NULL,
+    'InvoiceGridDataProvider' => NULL,
+    'Lof\\MarketPlace\\Ui\\DataProvider\\Seller\\RatingDataProvider' => NULL,
+    'RatingGridDataProvider' => NULL,
+    'Lof\\MarketPlace\\Ui\\DataProvider\\Seller\\ReviewSellerDataProvider' => NULL,
+    'ReviewSellerGridDataProvider' => NULL,
+    'Lof\\MarketPlace\\Ui\\DataProvider\\Seller\\PaymentDataProvider' => NULL,
+    'PaymentGridDataProvider' => NULL,
+    'Lof\\MarketPlace\\Ui\\DataProvider\\Seller\\TransactionDataProvider' => NULL,
+    'TransactionGridDataProvider' => NULL,
+    'Lof\\MarketPlace\\Ui\\DataProvider\\Seller\\OrderDataProvider' => NULL,
+    'OrderGridDataProvider' => NULL,
+    'Lof\\MarketPlace\\Ui\\DataProvider\\Seller\\SellerDataProvider' => NULL,
+    'SellerGridDataProvider' => NULL,
+    'Lof\\MarketPlace\\Ui\\DataProvider\\Seller\\CommissionDataProvider' => NULL,
+    'CommissionGridDataProvider' => NULL,
+    'Lof\\MarketPlace\\Ui\\DataProvider\\Seller\\GroupDataProvider' => NULL,
+    'SellerGroupGridDataProvider' => NULL,
+    'Lof\\MarketPlace\\Ui\\DataProvider\\Seller\\SellerProductDataProvider' => NULL,
+    'SellerProductGridDataProvider' => NULL,
+    'MageplazaCoreGirdFilterPool' => NULL,
+    'MageplazaCoreCoreGridDataProvider' => NULL,
     'Magento\\Framework\\ForeignKey\\Migration\\TableNameArrayIterator' => NULL,
     'OmsTableNameArrayIterator' => NULL,
     'BraintreeFacade' => NULL,
@@ -3941,6 +4105,8 @@
     'BraintreeLpmAuthorizeRequest' => NULL,
     'BraintreeLpmAuthorizationHandler' => NULL,
     'BraintreeLpmSaleRequest' => NULL,
+    'SwDailydealsGirdFilterPool' => NULL,
+    'SwDailydealsDailydealGridDataProvider' => NULL,
     'Vertex\\Tax\\Model\\ResourceModel\\VertexTaxCode' => NULL,
     'Vertex\\Tax\\Virtual\\ResourceModel\\Creditmemo\\VertexTaxCode' => NULL,
     'Vertex\\Tax\\Model\\ResourceModel\\TaxCode' => NULL,
@@ -4186,17 +4352,6 @@
         'instance' => 'Magento\\WebapiSecurity\\Model\\Plugin\\CacheInvalidator',
       ),
     ),
-    'Magento\\Framework\\UrlInterface' => NULL,
-    'Magento\\Framework\\Url' => NULL,
-    'Magento\\Backend\\Model\\UrlInterface' => NULL,
-    'Magento\\Backend\\Model\\Url' => 
-    array (
-      'fixDefaultUrl' => 
-      array (
-        'sortOrder' => 0,
-        'instance' => 'Magento\\TwoFactorAuth\\Plugin\\FirstAvailableMenu',
-      ),
-    ),
     'Magento\\Authorization\\Model\\Role' => 
     array (
       'updateRoleUsersAcl' => 
@@ -4409,7 +4564,6 @@
         'instance' => 'Magento\\Reports\\Model\\Plugin\\Log',
       ),
     ),
-    'Magento\\Ui\\DataProvider\\AbstractDataProvider' => NULL,
     'Magento\\Ui\\DataProvider\\ModifierPoolDataProvider' => NULL,
     'Magento\\Catalog\\Model\\Category\\DataProvider' => 
     array (
@@ -4433,6 +4587,15 @@
       array (
         'sortOrder' => 0,
         'instance' => 'Magento\\Catalog\\Model\\Indexer\\Category\\Product\\Plugin\\MviewState',
+      ),
+    ),
+    'Magento\\Framework\\Url\\Helper\\Data' => NULL,
+    'Magento\\Catalog\\Helper\\Product' => 
+    array (
+      'seller_product_permission' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Lof\\MarketPlace\\Model\\Plugin\\ViewProduct',
       ),
     ),
     'Magento\\Store\\Model\\ResourceModel\\Website' => 
@@ -4995,10 +5158,22 @@
       ),
     ),
     'Magento\\Customer\\Model\\Address\\AddressModelInterface' => NULL,
-    'Magento\\Customer\\Model\\Address\\AbstractAddress' => NULL,
+    'Magento\\Customer\\Model\\Address\\AbstractAddress' => 
+    array (
+      'AmastyGdprAdressAnonymization' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Amasty\\Gdpr\\Plugin\\Customer\\Model\\Address\\AbstractAddressPlugin',
+      ),
+    ),
     'Magento\\Quote\\Api\\Data\\AddressInterface' => NULL,
     'Magento\\Quote\\Model\\Quote\\Address' => 
     array (
+      'AmastyGdprAdressAnonymization' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Amasty\\Gdpr\\Plugin\\Customer\\Model\\Address\\AbstractAddressPlugin',
+      ),
       'manage_assignment_of_pickup_location_to_quote_address' => 
       array (
         'sortOrder' => 20,
@@ -5708,6 +5883,15 @@
         'instance' => 'Magento\\Cron\\Model\\Backend\\Config\\Structure\\Converter',
       ),
     ),
+    'Magento\\Framework\\View\\TemplateEngineInterface' => NULL,
+    'Magento\\Framework\\View\\TemplateEngine\\Php' => 
+    array (
+      'Amasty_Base::AddEscaperToPhpRenderer' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Amasty\\Base\\Plugin\\Framework\\View\\TemplateEngine\\Php',
+      ),
+    ),
     'Magento\\Framework\\App\\RouterInterface' => 
     array (
       'csp_aware_plugin' => 
@@ -6122,6 +6306,7 @@
       'save_order_tax' => 
       array (
         'sortOrder' => 0,
+        'disabled' => true,
         'instance' => 'Magento\\Tax\\Model\\Plugin\\OrderSave',
       ),
       'addVertexCustomerCountryToOrderAddress' => 
@@ -6137,6 +6322,11 @@
     ),
     'Magento\\Framework\\App\\PageCache\\Identifier' => 
     array (
+      'mplayerPagecacheIdentifier' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Mageplaza\\LayeredNavigation\\Plugin\\PageCache\\Identifier',
+      ),
       'core-app-area-design-exception-plugin' => 
       array (
         'sortOrder' => 10,
@@ -7090,6 +7280,11 @@
     'Magento\\Quote\\Api\\CartManagementInterface' => NULL,
     'Magento\\Quote\\Model\\QuoteManagement' => 
     array (
+      'lofmp-splitorder-split-quote' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'Lofmp\\SplitOrder\\Plugin\\SplitQuote',
+      ),
       'coupon_uses_increment_plugin' => 
       array (
         'sortOrder' => 20,
@@ -7399,6 +7594,57 @@
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Wishlist\\Controller\\Index\\Plugin',
+      ),
+    ),
+    'Amasty\\Gdpr\\Model\\ResourceModel\\WithoutConsent\\Grid\\Collection' => 
+    array (
+      'currentPageDetection' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Theme\\Plugin\\Data\\Collection',
+      ),
+      'amastyWithoutConsentCollection' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Amasty\\Gdpr\\Plugin\\WithoutConsent\\Grid\\Collection',
+      ),
+    ),
+    'Magento\\Directory\\Model\\ResourceModel\\Country' => 
+    array (
+      'AmastyGdprAnonymizatedAddressLoad' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Amasty\\Gdpr\\Plugin\\Directory\\Model\\ResourceModel\\CountryPlugin',
+      ),
+    ),
+    'Magento\\Catalog\\Cron\\RefreshSpecialPrices' => 
+    array (
+      'Amasty_Label::detect-refresh-price' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Amasty\\Label\\Plugin\\Catalog\\Indexer\\Product\\Price',
+      ),
+    ),
+    'Magento\\Framework\\Mview\\ActionInterface' => NULL,
+    'Magento\\Catalog\\Model\\Indexer\\Product\\Price' => 
+    array (
+      'cache_cleaner_after_reindex' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Indexer\\Model\\Indexer\\CacheCleaner',
+      ),
+      'Amasty_Label::reindex-label-price-changes' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Amasty\\Label\\Plugin\\Catalog\\Indexer\\Product\\Price',
+      ),
+    ),
+    'Magento\\Framework\\App\\Config\\ScopeCodeResolver' => 
+    array (
+      'Amasty_Label::clean-scope-code' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Amasty\\Label\\Plugin\\App\\Config\\ScopeCodeResolver',
       ),
     ),
     'Magento\\Checkout\\CustomerData\\Cart' => 
@@ -8031,12 +8277,30 @@
         'instance' => 'Klarna\\KpGraphQl\\Plugin\\Model\\Resolver\\AvailablePaymentMethodsPlugin',
       ),
     ),
+    'Magento\\Framework\\App\\PageCache\\Kernel' => 
+    array (
+      'mplayerProcessRequest' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Mageplaza\\LayeredNavigation\\Plugin\\PageCache\\ProcessRequest',
+      ),
+    ),
     'Magento\\Framework\\View\\Asset\\Minification' => 
     array (
       'braintreeExcludeFromMinification' => 
       array (
         'sortOrder' => 0,
         'instance' => 'PayPal\\Braintree\\Plugin\\ExcludeFromMinification',
+      ),
+    ),
+    'Magento\\Framework\\Pricing\\Render\\PriceBoxRenderInterface' => NULL,
+    'Magento\\Framework\\Pricing\\Render\\PriceBox' => NULL,
+    'Magento\\Catalog\\Pricing\\Render\\FinalPriceBox' => 
+    array (
+      'Sw_Dailydeals_change_template' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Smartwave\\Dailydeals\\Plugin\\FinalPricePlugin',
       ),
     ),
     'Vertex\\Utility\\SoapClientFactory' => 
@@ -8290,7 +8554,7 @@
         0 => 'currentPageDetection',
       ),
     ),
-    'Magento\\CatalogSearch\\Model\\ResourceModel\\Fulltext\\Collection_getCurPage___self' => 
+    'Mageplaza\\LayeredNavigation\\Model\\ResourceModel\\Fulltext\\Collection_getCurPage___self' => 
     array (
       4 => 
       array (
@@ -8298,6 +8562,13 @@
       ),
     ),
     'Magento\\CatalogSearch\\Model\\ResourceModel\\Fulltext\\SearchCollection_getCurPage___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'currentPageDetection',
+      ),
+    ),
+    'Magento\\CatalogSearch\\Model\\ResourceModel\\Fulltext\\Collection_getCurPage___self' => 
     array (
       4 => 
       array (
@@ -8332,7 +8603,42 @@
         0 => 'currentPageDetection',
       ),
     ),
+    'Magento\\Framework\\View\\Result\\Page_renderResult___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'updateBodyClass',
+      ),
+    ),
+    'robotsResultPage_renderResult___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'updateBodyClass',
+      ),
+    ),
     'Magento\\UrlRewrite\\Ui\\Component\\UrlRewrite\\DataProvider\\SearchResult_getCurPage___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'currentPageDetection',
+      ),
+    ),
+    'securitytxtResultPage_renderResult___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'updateBodyClass',
+      ),
+    ),
+    'Amasty\\Gdpr\\Model\\ResourceModel\\ConsentQueue\\Grid\\Collection_getCurPage___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'currentPageDetection',
+      ),
+    ),
+    'Amasty\\Label\\Model\\ResourceModel\\Labels\\Grid\\Collection_getCurPage___self' => 
     array (
       4 => 
       array (
@@ -8572,13 +8878,6 @@
       4 => 
       array (
         0 => 'webapiResourceSecurityCacheInvalidate',
-      ),
-    ),
-    'Magento\\Backend\\Model\\Url_findFirstAvailableMenu___self' => 
-    array (
-      4 => 
-      array (
-        0 => 'fixDefaultUrl',
       ),
     ),
     'Magento\\Authorization\\Model\\Role_save___self' => 
@@ -8837,6 +9136,10 @@
       array (
         0 => 'setStatusForMview',
       ),
+    ),
+    'Magento\\Catalog\\Helper\\Product_canShow___self' => 
+    array (
+      2 => 'seller_product_permission',
     ),
     'Magento\\Store\\Model\\ResourceModel\\Website_delete___self' => 
     array (
@@ -9378,6 +9681,20 @@
       4 => 
       array (
         0 => 'amazon_payment_quote_repository',
+      ),
+    ),
+    'Magento\\Customer\\Model\\Address\\AbstractAddress_validate___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'AmastyGdprAdressAnonymization',
+      ),
+    ),
+    'Magento\\Quote\\Model\\Quote\\Address_validate___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'AmastyGdprAdressAnonymization',
       ),
     ),
     'Magento\\Quote\\Model\\Quote\\Address_afterSave___self' => 
@@ -9964,6 +10281,13 @@
         0 => 'cron_backend_config_structure_converter_plugin',
       ),
     ),
+    'Magento\\Framework\\View\\TemplateEngine\\Php_render___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'Amasty_Base::AddEscaperToPhpRenderer',
+      ),
+    ),
     'Magento\\Framework\\App\\RouterInterface_match___self' => 
     array (
       4 => 
@@ -10341,8 +10665,7 @@
       array (
         0 => 'save_gift_message',
         1 => 'save_pickup_location_for_order',
-        2 => 'save_order_tax',
-        3 => 'addVertexCustomerCountryToOrderAddress',
+        2 => 'addVertexCustomerCountryToOrderAddress',
       ),
     ),
     'Magento\\Sales\\Api\\OrderRepositoryInterface_get___self' => 
@@ -10366,7 +10689,8 @@
     array (
       4 => 
       array (
-        0 => 'core-app-area-design-exception-plugin',
+        0 => 'mplayerPagecacheIdentifier',
+        1 => 'core-app-area-design-exception-plugin',
       ),
     ),
     'Magento\\Framework\\App\\PageCache\\Cache_save___self' => 
@@ -11114,6 +11438,10 @@
         0 => 'coupon_uses_decrement_plugin',
       ),
     ),
+    'Magento\\Quote\\Model\\QuoteManagement_placeOrder___self' => 
+    array (
+      2 => 'lofmp-splitorder-split-quote',
+    ),
     'Magento\\Quote\\Model\\QuoteManagement_submit___self' => 
     array (
       1 => 
@@ -11395,6 +11723,82 @@
       1 => 
       array (
         0 => 'authentication',
+      ),
+    ),
+    'Amasty\\Gdpr\\Model\\ResourceModel\\WithoutConsent\\Grid\\Collection_getCurPage___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'currentPageDetection',
+      ),
+    ),
+    'Amasty\\Gdpr\\Model\\ResourceModel\\WithoutConsent\\Grid\\Collection__initSelect___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'amastyWithoutConsentCollection',
+      ),
+    ),
+    'Magento\\Directory\\Model\\ResourceModel\\Country_loadByCode___self' => 
+    array (
+      2 => 'AmastyGdprAnonymizatedAddressLoad',
+    ),
+    'Magento\\Catalog\\Cron\\RefreshSpecialPrices_executeList___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'Amasty_Label::detect-refresh-price',
+      ),
+      4 => 
+      array (
+        0 => 'Amasty_Label::detect-refresh-price',
+      ),
+    ),
+    'Magento\\Catalog\\Cron\\RefreshSpecialPrices_execute___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'Amasty_Label::detect-refresh-price',
+      ),
+    ),
+    'Magento\\Catalog\\Model\\Indexer\\Product\\Price_executeFull___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'cache_cleaner_after_reindex',
+      ),
+    ),
+    'Magento\\Catalog\\Model\\Indexer\\Product\\Price_executeList___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'cache_cleaner_after_reindex',
+        1 => 'Amasty_Label::reindex-label-price-changes',
+      ),
+      1 => 
+      array (
+        0 => 'Amasty_Label::reindex-label-price-changes',
+      ),
+    ),
+    'Magento\\Catalog\\Model\\Indexer\\Product\\Price_executeRow___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'cache_cleaner_after_reindex',
+      ),
+    ),
+    'Magento\\Catalog\\Model\\Indexer\\Product\\Price_execute___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'Amasty_Label::reindex-label-price-changes',
+      ),
+    ),
+    'Magento\\Framework\\App\\Config\\ScopeCodeResolver_resolve___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'Amasty_Label::clean-scope-code',
       ),
     ),
     'Magento\\Checkout\\CustomerData\\Cart_getSectionData___self' => 
@@ -11894,11 +12298,25 @@
         0 => 'klarnaKpGraphQlAvailablePaymentMethods',
       ),
     ),
+    'Magento\\Framework\\App\\PageCache\\Kernel_load___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'mplayerProcessRequest',
+      ),
+    ),
     'Magento\\Framework\\View\\Asset\\Minification_getExcludes___self' => 
     array (
       4 => 
       array (
         0 => 'braintreeExcludeFromMinification',
+      ),
+    ),
+    'Magento\\Catalog\\Pricing\\Render\\FinalPriceBox_setTemplate___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'Sw_Dailydeals_change_template',
       ),
     ),
     'Vertex\\Utility\\SoapClientFactory_create___self' => 

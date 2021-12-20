@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="GdprConsentCheckboxOnNewCustomerAccountPage">
+        <annotations>
+            <features value="Consent Checkbox"/>
+            <stories value="Consent Checkbox Is on the Create New Customer Account Page"/>
+            <title value="Consent Checkbox Is on the Create New Customer Account Page"/>
+            <description value="Check Consent Checkbox Is Appeared on the Create New Customer Account Page"/>
+            <severity value="MAJOR"/>
+            <testCaseId value="Gdpr-4"/>
+            <group value="Gdpr"/>
+            <group value="ConsentCheckbox"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin"/>
+            <actionGroup ref="AdminCreateConsentCheckboxActionGroup" stepKey="createConsentCheckbox">
+                <argument name="consentCheckbox" value="defaultConsentCheckbox"/>
+            </actionGroup>
+        </before>
+        <after>
+            <actionGroup ref="AdminFindConsentCheckboxActionGroup" stepKey="findConsentCheckbox"/>
+            <actionGroup ref="AdminDeleteFromGridConsentCheckboxActionGroup" stepKey="deleteFromGridConsentCheckbox"/>
+            <actionGroup ref="logout" stepKey="logoutOfAdmin"/>
+        </after>
+
+        <actionGroup ref="StorefrontOpenCustomerAccountCreatePageActionGroup" stepKey="openCreateAccountPage"/>
+        <actionGroup ref="StorefrontFillCustomerAccountCreationFormActionGroup" stepKey="createNewCustomerAccount">
+            <argument name="customer" value="Simple_US_Customer" />
+        </actionGroup>
+        <actionGroup ref="StorefrontRequiredCheckboxBeforeActionActionGroup" stepKey="assertCheckboxBeforeCreateAccount"/>
+        <actionGroup ref="StorefrontCheckConsentCheckboxActionGroup" stepKey="checkConsentCheckbox" />
+        <actionGroup ref="StorefrontClickCreateAnAccountCustomerAccountCreationFormActionGroup" stepKey="clickCreateCustomerAccountAfterAgreeWithPolicy"/>
+        <actionGroup ref="AssertMessageCustomerCreateAccountActionGroup" stepKey="assertSuccessMessage" />
+    </test>
+</tests>

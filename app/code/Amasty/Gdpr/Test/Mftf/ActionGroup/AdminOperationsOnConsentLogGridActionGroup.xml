@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+    <!--operations on consent log grid-->
+    <actionGroup name="AdminFindRecordOnConsentLogByEmailActionGroup">
+        <arguments>
+            <argument name="customerEmail" type="string"/>
+            <argument name="qtyRecordsFound" defaultValue="qtyRecordFound.1_record"/>
+        </arguments>
+        <amOnPage url="{{AdminConsentLogGrid.url}}" stepKey="openConsentLogGrid"/>
+        <waitForPageLoad stepKey="waitForConsentLogGridLoad"/>
+        <conditionalClick selector="{{AdminConsentLogGridSection.ClearAllFilters}}"
+                          dependentSelector="{{AdminConsentLogGridSection.ActiveFilters}}"
+                          visible="true" stepKey="clearAllFilters"/>
+        <waitForPageLoad stepKey="waitForCLearFilterDataLoad"/>
+        <conditionalClick selector="{{AdminConsentLogGridSection.FiltersButton}}"
+                          dependentSelector="{{AdminConsentLogGridSection.ApplyFilter}}"
+                          visible="false" stepKey="openFilter"/>
+        <fillField userInput="{{customerEmail}}" selector="{{AdminConsentLogGridSection.EmailField}}" stepKey="fillCustomerEmail"/>
+        <click selector="{{AdminConsentLogGridSection.ApplyFilter}}" stepKey="applyFilter"/>
+        <waitForPageLoad stepKey="waitForFilteredDataLoad"/>
+        <seeElement selector="{{AdminConsentLogGridSection.RecordsFoundMessage(qtyRecordsFound)}}" stepKey="seeCorrectQtyRecordsFound"/>
+    </actionGroup>
+
+    <actionGroup name="AdminDeleteConsentLogRecordActionGroup">
+        <checkOption selector="{{AdminConsentLogGridSection.FirstRowCheckbox}}" stepKey="checkLogRecord"/>
+        <click selector="{{AdminConsentLogGridSection.MassActions}}" stepKey="clickMassActionsButton"/>
+        <click selector="{{AdminConsentLogGridSection.DeleteMassAction}}" stepKey="clickDeleteMassActionButton"/>
+        <waitForPageLoad stepKey="waitForAcceptDeleteLogButton"/>
+        <click selector="{{AdminConsentLogGridSection.AcceptDeleteLogRecordButton}}" stepKey="acceptDeleteLogRecordButton"/>
+        <waitForPageLoad stepKey="waitForDeleteLogRecord"/>
+        <seeElement selector="{{AdminConsentLogGridSection.LogSuccessfullyRemovedMessage}}" stepKey="seeLogSuccessfullyRemovedMessage"/>
+    </actionGroup>
+
+    <!--check data on consent log grid-->
+    <actionGroup name="AdminCheckActionOnConsentLogActionGroup">
+        <arguments>
+            <argument name="consentLogColumn" defaultValue="acceptAction"/>
+        </arguments>
+        <seeElement selector="{{AdminConsentLogGridSection.GridCell(consentLogColumn.columnName,consentLogColumn.action)}}" stepKey="checkAction"/>
+    </actionGroup>
+</actionGroups>

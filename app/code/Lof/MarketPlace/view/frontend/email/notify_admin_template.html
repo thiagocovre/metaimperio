@@ -1,0 +1,6 @@
+{{template config_path="design/email/header_template"}}
+<p>{{trans "You have a new register seller"}}</p>
+<p>{{trans "Seller Name: "}}{{var data.name}}</p>
+<p>{{trans "Seller Email:"}} {{var data.email}}</p>
+<a style="color:#5ac17f" href="{{var data.url}}">{{trans "Link page seller"}}</a>
+{{template config_path="design/email/footer_template"}}

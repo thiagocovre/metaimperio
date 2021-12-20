@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="GdprDenyDeleteRequestByAdmin" extends="GdprApproveDeleteRequestByAdmin">
+        <annotations>
+            <features value="Delete Request"/>
+            <stories value="Deny Delete Request by Admin. There Is a Customer on the Customer Grid. Customer Successfully Logged In on the Front Part"/>
+            <title value="Deny Delete Request by Admin. There Is a Customer on the Customer Grid. Customer Successfully Logged In on the Front Part"/>
+            <description value="Check There Is a Customer on the Customer Grid and Customer Can Log In on the Front Part"/>
+            <severity value="MAJOR"/>
+            <testCaseId value="Gdpr-20"/>
+            <group value="Gdpr"/>
+            <group value="CustomerAccountPrivacySettings"/>
+            <group value="DeleteRequest"/>
+        </annotations>
+
+        <remove keyForRemoval="seeErrorMessageAfterAttemptToLogIn"/>
+        <actionGroup ref="StorefrontCustomerLogoutActionGroup" after="submitDeleteRequest" stepKey="logoutCustomer"/>
+        <actionGroup ref="AdminDenyDeleteRequestActionGroup" stepKey="actionWithDeleteRequest"/>
+        <actionGroup ref="AdminAssertCustomerInCustomersGrid" stepKey="checkCustomerOnGrid">
+            <argument name="text" value="$$customer.email$$"/>
+            <argument name="row" value="{{rowNumber.first}}"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontAssertSuccessLoginToStorefront" stepKey="checkAttemptToLoginToStorefront">
+            <argument name="Customer" value="$$customer$$"/>
+        </actionGroup>
+    </test>
+</tests>

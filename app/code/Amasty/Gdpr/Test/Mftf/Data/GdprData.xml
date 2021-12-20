@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:DataGenerator/etc/dataProfileSchema.xsd">
+    <entity name="qtyRecordFound" type="qtyRecords">
+        <data key="0_record">0</data>
+        <data key="1_record">1</data>
+    </entity>
+
+    <!--consent log grid-->
+    <entity name="acceptAction" type="consentLogColumn">
+        <data key="columnName">Action</data>
+        <data key="action">Accept</data>
+    </entity>
+    <entity name="declineAction" extends="acceptAction">
+        <data key="action">Decline</data>
+    </entity>
+
+    <!--customer grid-->
+    <entity name="customerGridMessage" type="customerGrid">
+        <data key="noCustomer">We couldn't find any records.</data>
+    </entity>
+    <entity name="rowNumber" type="customerGrid">
+        <data key="first">1</data>
+    </entity>
+
+    <!--delete requests-->
+    <entity name="denyRequestMessage" type="deleteRequest">
+        <data key="message">Deny request. Regards.</data>
+    </entity>
+</entities>

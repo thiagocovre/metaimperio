@@ -1,0 +1,37 @@
+<div class="col-md-12 col-sm-12 col-xs-12">
+    	<div class="x_panel">
+    		<div class="x_title">
+    			<h2><?php echo __('Post a Reply');?></h2>
+    			<div class="clearfix"></div>
+    		</div>
+    		<div class="x_content">
+	    		<form id="form-message" data-parsley-validate="" action="<?php echo $this->getUrl('catalog/message/save');?>" class="form-horizontal form-label-left" method="post" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="content"><?php echo __('Subject');?> <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input name="subject" rows="10" id="subject" required="required" class="form-control col-md-7 col-xs-12"> </textarea>
+                        </div>
+                    </div>
+	                <div class="form-group">
+	                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description"><?php echo __('Message');?> <span class="required">*</span>
+	                    </label>
+	                    <div class="col-md-6 col-sm-6 col-xs-12">
+	                      <textarea name="description" rows="10" id="description" required="required" class="form-control col-md-7 col-xs-12"> </textarea>
+	                    </div>
+	                </div>
+	                <div class="ln_solid"></div>
+	                <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        	<input type="hidden" name="seller_id" value="<?php echo $this->getSeller()->getSellerId();?>" />
+                        	<input type="hidden" name="seller_send" value="1" />
+                        	<input type="hidden" name="seller_name" value="<?php echo $this->getSeller()->getName();?>" />
+                        	<input type="hidden" name="seller_email" value="<?php echo $this->getSeller()->getEmail();?>" />
+						  	<button class="btn btn-primary" type="reset"><?php echo __('Reset');?></button>
+                          	<button type="submit" class="btn btn-success"><?php echo __('Submit');?></button>
+                        </div>
+                    </div>
+	            </form>
+	    	</div>
+    	</div>
+    </div>

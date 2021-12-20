@@ -1,0 +1,111 @@
+<script type="text/javascript">
+    require(['jquery'], function ($) {
+        $(document).ready(function () {
+            $("#proceed-to-checkout-btn").prop('disabled', true);
+
+            $(".select-seller").click(function () {
+                var button = $("#proceed-to-checkout-btn");
+                var dataPost = button.attr("data-post");
+                var dataPostObject = JSON.parse(dataPost);
+                var productIds = "";
+                var productCount = 0;
+                var subTotals = 0;
+
+                if (this.checked === true) {
+                    $(".item-select-" + $(this).val()).each(function () {
+                        if (this.checked === false) {
+                            this.checked = true;
+                        }
+                    });
+                }
+                else {
+                    $(".item-select-" + $(this).val()).each(function () {
+                        if (this.checked === true) {
+                            this.checked = false;
+                        }
+                    });
+                }
+
+                $(".item-select").each(function () {
+                    if (this.checked === true) {
+                        productCount++;
+                        if (productIds === "") {
+                            productIds += $(this).val();
+                        }
+                        else {
+                            productIds = productIds + "," + $(this).val();
+                        }
+                    }
+                });
+
+                dataPostObject.data.productIds = productIds;
+                dataPost = JSON.stringify(dataPostObject);
+                button.attr("data-post", dataPost);
+
+                if (productCount != 0) {
+                    $("#proceed-to-checkout-btn").prop('disabled', false);
+                } else {
+                    $("#proceed-to-checkout-btn").prop('disabled', true);
+                }
+
+                $('.select-wrapper').each(function () {
+                    if($(this).children('.item-select').first().get(0).checked === true){
+                        subTotals += Number($(this).children('.price').first().val());
+                    }
+                });
+                subTotals = subTotals.toFixed(Math.max(2, (subTotals.toString().split('.')[1] || []).length));
+                $('#subtotals-value').html(subTotals);
+            });
+
+            $(".item-select").click(function () {
+                var button = $("#proceed-to-checkout-btn");
+                var dataPost = button.attr("data-post");
+                var dataPostObject = JSON.parse(dataPost);
+                var productIds = "";
+                var productCount = 0;
+                var subTotals = 0;
+
+                $(".select-seller").each(function () {
+                    var flags = true;
+                    $(".item-select-" + $(this).val()).each(function () {
+                        if (this.checked === false) {
+                            flags = false;
+                        }
+                    });
+
+                    this.checked = flags;
+                });
+
+                $(".item-select").each(function () {
+                    if (this.checked === true) {
+                        productCount++;
+                        if (productIds === "") {
+                            productIds += $(this).val();
+                        }
+                        else {
+                            productIds = productIds + "," + $(this).val();
+                        }
+                    }
+                });
+
+                dataPostObject.data.productIds = productIds;
+                dataPost = JSON.stringify(dataPostObject);
+                button.attr("data-post", dataPost);
+
+                if (productCount != 0) {
+                    $("#proceed-to-checkout-btn").prop('disabled', false);
+                } else {
+                    $("#proceed-to-checkout-btn").prop('disabled', true);
+                }
+
+                $('.select-wrapper').each(function () {
+                    if($(this).children('.item-select').first().get(0).checked === true){
+                        subTotals += Number($(this).children('.price').first().val());
+                    }
+                });
+                subTotals = subTotals.toFixed(Math.max(2, (subTotals.toString().split('.')[1] || []).length));
+                $('#subtotals-value').html(subTotals);
+            });
+        });
+    });
+</script>

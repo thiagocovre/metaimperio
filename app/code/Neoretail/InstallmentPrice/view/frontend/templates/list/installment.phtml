@@ -1,0 +1,23 @@
+<?php
+    $product = $block->getProduct();
+?>
+
+<div data-role="priceBox" class="installment-price-<?= $product->getId() ?>"></div>
+
+<script type="text/x-magento-init">
+    {
+        ".installment-price-<?= $product->getId() ?>": {
+            "priceBoxInstallment": {
+                "priceConfig": <?= $block->getJsonConfig($product) ?>,
+                "installmentNumber": <?= $block->getInstallmentNumber() ?>,
+                "productPrice": <?= $product->getFinalPrice() ?>,
+                "priceTemplate": "#category-installment",
+                "installmentListMinAmount": <?= $block->getInstallmentMinAmount() ?>
+            }
+        }
+    }
+</script>
+
+<script id="category-installment" type="text/x-magento-template">
+    <span class='price'>em até <strong><%- data.installment.number %>x de <%- data.installment.price %></strong> sem juros</span>
+</script>

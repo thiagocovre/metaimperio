@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+    <actionGroup name="StorefrontSubscribeNewsletterActionGroup">
+        <arguments>
+            <argument name="email"/>
+        </arguments>
+        <fillField selector="{{StorefrontNewsletterSubscribeSection.NewsletterEmailField}}" userInput="{{email}}" stepKey="enterEmail"/>
+        <click selector="{{StorefrontNewsletterSubscribeSection.NewsletterSubscribeButton}}" stepKey="clickSubscribe"/>
+        <waitForPageLoad stepKey="waitForSubscribe"/>
+        <seeElement selector="{{StorefrontNewsletterSubscribeSection.SuccessSubscribeMessage}}" stepKey="checkSubscribeMessage"/>
+    </actionGroup>
+
+    <actionGroup name="StorefrontAttemptSubscribeNewsletterActionGroup" extends="StorefrontSubscribeNewsletterActionGroup">
+        <arguments>
+            <argument name="consentCheckbox" defaultValue="defaultConsentCheckbox.checkboxCode"/>
+        </arguments>
+        <dontSeeElement selector="{{StorefrontNewsletterSubscribeSection.SuccessSubscribeMessage}}" stepKey="checkSubscribeMessage"/>
+        <seeElement selector="{{StorefrontNewsletterSubscribeSection.RequiredFieldMessage(consentCheckbox)}}" stepKey="requiredFieldMessage"/>
+    </actionGroup>
+</actionGroups>

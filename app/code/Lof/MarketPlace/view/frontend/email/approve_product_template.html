@@ -1,0 +1,7 @@
+<!--@subject  Approve Product @-->
+{{template config_path="design/email/header_template"}}
+<p>{{trans"Product "}}{{var data.name}} {{trans"have been approved." }}</p>
+<p style="padding:20px 0 0 0;margin:0"><b>{{trans"Do not reply to this email!" }}</b></p>
+<br>
+<a style="color:#5ac17f" href="{{var data.url}}">{{trans "Your link page seller"}}</a>
+{{template config_path="design/email/footer_template"}}

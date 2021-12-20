@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+    <section name="StorefrontPrivacySettingsSection">
+        <element name="DownloadPersonalDataBlock" type="block" selector="//*[@class='block'][contains(string(), 'Download personal data')]"/>
+        <element name="AnonymisePersonalDataBlock" type="block" selector="//*[@class='block'][contains(string(), 'Anonymise personal data')]"/>
+        <element name="AnonymiseAccountCheckbox" type="checkbox" selector="//*[@class='block'][contains(string(), 'Anonymise personal data')]//*[@class='accept addon']"/>
+        <element name="AnonymiseAccountPassword" type="input" selector="//*[@id='current-password-anonymize']"/>
+        <element name="AnonymiseAccountSubmit" type="button" selector="//*[@class='block'][contains(string(), 'Anonymise personal data')]//*[@type='submit']"/>
+        <element name="AnonymisePersonalDataMessage" type="text" selector="//*[@data-ui-id='message-success']['Anonymisation was successful']"/>
+        <element name="DeleteAccountBlock" type="block" selector="//*[@class='block'][contains(string(), 'Delete account')]"/>
+        <element name="DeleteAccountCheckbox" type="checkbox" selector="//*[@class='block'][contains(string(), 'Delete account')]//*[@class='accept addon']"/>
+        <element name="DeleteAccountPassword" type="input" selector="//*[@id='current-password-delete']"/>
+        <element name="DeleteAccountSubmit" type="button" selector="//*[@class='block'][contains(string(), 'Delete account')]//*[@type='submit']"/>
+        <element name="DeleteAccountMessage" type="text" selector="//*[@data-ui-id='message-success'][contains(string(), 'Thank you, your account delete request was recorded.')]"/>
+        <element name="GivenConsentBlock" type="block" selector="//*[@class='block'][contains(string(), 'Given Consent')]"/>
+        <element name="GivenConsentCheckboxLabel" type="text" selector="//*[@class='block'][contains(string(), 'Given Consent')]//label[contains(string(), '{{checkboxLabel}}')]" parameterized="true"/>
+        <element name="GivenConsentCheckbox" type="text" selector="//*[@class='block'][contains(string(), 'Given Consent')]//*[@type='checkbox'][@name='amgdpr_agreement[{{checkboxCode}}]']" parameterized="true"/>
+        <element name="SaveGivenConsentCheckbox" type="button" selector="//*[@class='block'][contains(string(), 'Given Consent')]//button[contains(string(), 'Save')]"/>
+        <element name="GivenConsentChangedMessage" type="text" selector="//*[@data-ui-id='message-success'][contains(string(), 'Changes has been saved.')]"/>
+    </section>
+    <section name="StorefrontConsentCheckboxSection">
+        <element name="ConsentCheckbox" type="checkbox" selector="//*[@type='checkbox'][@name='amgdpr_agreement[{{checkboxCode}}]']" parameterized="true"/>
+        <element name="CheckboxLabel" type="text" selector="//*[@data-role='amasty-gdpr-consent']/label[contains(string(), '{{checkboxLabel}}')]" parameterized="true"/>
+        <element name="RequiredFieldMessage" type="text" selector="//*[@id='amgdpr_agreement[{{checkboxCode}}]-error']" parameterized="true"/>
+        <element name="PrivacyPolicyLink" type="button" selector="//*[@data-role='amasty-gdpr-consent']/label[contains(string(), '{{checkboxLabel}}')]//a" parameterized="true"/>
+        <element name="PrivacyPolicyLinkCheckout" type="button" selector="//input[@data-gdpr-checkbox-code='{{checkboxCode}}']/following::span[contains(string(), '{{checkboxLabel}}')]/a" parameterized="true"/>
+        <element name="PositionConsentCheckbox" type="checkbox" selector="//div[@data-role='amasty-gdpr-consent'][{{position}}]/*[@type='checkbox'][@name='amgdpr_agreement[{{checkboxCode}}]']" parameterized="true"/>
+        <element name="ConsentCheckboxCheckout" type="checkbox" selector="//input[@data-gdpr-checkbox-code='{{checkboxCode}}']" parameterized="true"/>
+        <element name="ConsentCheckboxLabelCheckout" type="text" selector="//input[@data-gdpr-checkbox-code='{{checkboxCode}}']/following::label[contains(string(), '{{checkboxLabel}}')]" parameterized="true"/>
+        <element name="RequiredFieldMessageCheckout" type="text" selector="//input[@data-gdpr-checkbox-code='{{checkboxCode}}']/following::div[@id='{{checkboxCode}}-error']" parameterized="true"/>
+    </section>
+    <section name="StorefrontPrivacyPolicyPopupSection">
+        <element name="PrivacyPolicyText" type="text" selector="//*[@id='amgdpr-privacy-popup'][contains(string(), '{{policyText}}')]" parameterized="true"/>
+        <element name="ReadAndAcceptButton" type="button" selector="//button[@class='action action-primary'][contains(string(), 'I have read and accept')]"/>
+        <element name="ClosePopup" type="button" selector="//*[@id='amgdpr-privacy-popup']/parent::div/parent::div//*[@data-role='closeBtn']"/>
+    </section>
+    <section name="StorefrontNewsletterSubscribeSection">
+        <element name="NewsletterEmailField" type="input" selector="//*[@id='newsletter']"/>
+        <element name="NewsletterSubscribeButton" type="button" selector="//*[@class='action subscribe primary']"/>
+        <element name="SuccessSubscribeMessage" type="text" selector="//*[@data-ui-id='message-success'][contains(string(), 'Thank you for your subscription.')]"/>
+        <element name="RequiredFieldMessage" type="text" selector="//*[@id='amgdpr_agreement[{{checkboxCode}}]-error'][contains(string(), 'This is a required field.')]" parameterized="true"/>
+    </section>
+</sections>

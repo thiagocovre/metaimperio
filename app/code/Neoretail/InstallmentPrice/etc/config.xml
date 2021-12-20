@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <catalog>
+            <installment_general>
+                <installment_enable>0</installment_enable>
+                <installment_number>6</installment_number>
+                <installment_minamout>0</installment_minamout>
+                <installment_list_show>0</installment_list_show>
+                <installment_list_number>12</installment_list_number>
+            </installment_general>
+        </catalog>
+    </default>
+</config>

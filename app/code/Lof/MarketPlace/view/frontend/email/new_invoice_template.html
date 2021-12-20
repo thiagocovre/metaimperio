@@ -1,0 +1,8 @@
+<!--@subject New Invoice # {{var data.invoice_id}} from Order # {{var data.order_id}} @-->
+
+
+{{template config_path="design/email/header_template"}}
+<p>{{trans "Dear"}} {{var data.name}},</p>
+<p>{{trans"You have new invoice"}}{{var data.invoice_id}}{{trans "form order" }} {{var data.order_id}}</p>
+<p>{{trans "Invoice status"}} {{var data.invoice_status}}</p>
+{{template config_path="design/email/footer_template"}} 

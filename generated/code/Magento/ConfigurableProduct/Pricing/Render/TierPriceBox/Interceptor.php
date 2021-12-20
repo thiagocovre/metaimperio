@@ -22,4 +22,13 @@ class Interceptor extends \Magento\ConfigurableProduct\Pricing\Render\TierPriceB
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getCacheKey');
         return $pluginInfo ? $this->___callPlugins('getCacheKey', func_get_args(), $pluginInfo) : parent::getCacheKey();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setTemplate($template)
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'setTemplate');
+        return $pluginInfo ? $this->___callPlugins('setTemplate', func_get_args(), $pluginInfo) : parent::setTemplate($template);
+    }
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Lof_MarketPlace::marketplace" title="Lof Seller">
+                    <resource id="Lofmp_SplitCart::split_cart" title="Split Cart" sortOrder="210">
+                        <resource id="Lofmp_SplitCart::configuration" title="Split Cart Config" sortOrder="10"/>
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Lofmp_SplitCart::split_cart_config" title="Split Cart Config" sortOrder="500"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp/etc/csp_whitelist.xsd">
+    <policies>
+        <policy id="frame-ancestors">
+            <values>
+                <value id="viramoda" type="host">*.vira.moda</value>
+                <value id="neomarketonline" type="host">*.neomarket.online</value>
+                <value id="neomodadevbr" type="host">*.neomoda.dev.br</value>
+                <value id="staticviramoda" type="host">static.vira.moda</value>
+                <value id="cdnviramoda" type="host">cdn.vira.moda</value>                
+            </values>
+        </policy>    
+        <policy id="form-action">
+            <values>
+                <value id="viramoda" type="host">*.vira.moda</value>
+                <value id="neomarketonline" type="host">*.neomarket.online</value>
+                <value id="neomodadevbr" type="host">*.neomoda.dev.br</value>
+                <value id="staticviramoda" type="host">static.vira.moda</value>
+            </values>
+        </policy>
+        <policy id="script-src">
+            <values>
+                <value id="cloudflare" type="host">*.cloudflare.com</value>
+                <value id="cloudflareinsights" type="host">*.cloudflareinsights.com</value>
+                <value id="fontawesome" type="host">*.fontawesome.com</value>
+                <value id="viramoda" type="host">*.vira.moda</value>
+                <value id="s3" type="host">*.vira.moda</value>
+                <value id="staticviramoda" type="host">static.vira.moda</value>
+                <value id="amazonaws" type="host">*.amazonaws.com</value>
+                <value id="s3useast2amazonaws" type="host">s3.us-east-2.amazonaws.com</value>
+                <value id="neomarketonline" type="host">*.neomarket.online</value>
+                <value id="neomodadevbr" type="host">*.neomoda.dev.br</value>
+                <value id="sizebaytec" type="host">*.sizebay.technology</value>
+                <value id="google" type="host">*.google.com</value>
+                <value id="facebooknet" type="host">*.facebook.net</value>
+                <value id="facebookcom" type="host">*.facebook.com</value>
+                <value id="wwwclarity" type="host">www.clarity.ms</value>
+                <value id="tudoclarity" type="host">*.clarity.ms</value>
+            </values>
+        </policy>
+        <policy id="style-src">
+            <values>
+                <value id="cloudflare" type="host">*.cloudflare.com</value>
+                <value id="fontawesome" type="host">*.fontawesome.com</value>
+                <value id="viramoda" type="host">*.vira.moda</value>
+                <value id="staticviramoda" type="host">static.vira.moda</value>
+                <value id="amazonaws" type="host">*.amazonaws.com</value>
+                <value id="s3useast2amazonaws" type="host">s3.us-east-2.amazonaws.com</value>
+                <value id="neomarketonline" type="host">*.neomarket.online</value>
+                <value id="neomodadevbr" type="host">*.neomoda.dev.br</value>
+                <value id="sizebay" type="host">*.sizebay.technology</value>
+            </values>
+        </policy>
+        <policy id="img-src">
+            <values>
+                <value id="cloudflare" type="host">*.cloudflare.com</value>
+                <value id="s3" type="host">*.vira.moda</value>
+                <value id="viramoda" type="host">vira.moda</value>
+                <value id="neomarketonline" type="host">*.neomarket.online</value>
+                <value id="neomodadevbr" type="host">*.neomoda.dev.br</value>
+                <value id="googletagmanager" type="host">*.googletagmanager.com</value>
+                <value id="mundipagg" type="host">*.mundipagg.com</value>
+                <value id="adminviramoda" type="host">admin.vira.moda</value>
+                <value id="omtrdcnet" type="host">*.omtrdc.net</value>
+                <value id="amcglobalscomtrdcnet" type="host">amcglobal.sc.omtrdc.net</value>
+                <value id="amazonaws" type="host">*.amazonaws.com</value>
+                <value id="s3useast2amazonaws" type="host">s3.us-east-2.amazonaws.com</value>
+                <value id="facebook" type="host">*.facebook.com</value>
+                <value id="wwwfacebook" type="host">www.facebook.com</value>
+                <value id="clarityms" type="host">*.clarity.ms</value>
+                <value id="wwwgoogle" type="host">www.google.com.br</value>
+                <value id="google" type="host">*.google.com.br</value>
+                <value id="bing" type="host">bing.com</value>
+                <value id="tudobing" type="host">*.bing.com</value>
+                <value id="staticviramoda" type="host">static.vira.moda</value>
+            </values>
+        </policy>
+        <policy id="connect-src">
+            <values>
+                <value id="cloudflare" type="host">*.cloudflare.com</value>
+                <value id="google" type="host">*.google-analytics.com</value>
+                <value id="mundipaggapi" type="host">*.mundipagg.com</value>
+                <value id="viramoda" type="host">vira.moda</value>
+                <value id="s3" type="host">*.vira.moda</value>
+                <value id="tudoviramoda" type="host">*.vira.moda</value>
+                <value id="staticviramoda" type="host">static.vira.moda</value>
+                <value id="amazonaws" type="host">*.amazonaws.com</value>
+                <value id="s3useast2amazonaws" type="host">s3.us-east-2.amazonaws.com</value>
+                <value id="neomarketonline" type="host">*.neomarket.online</value>
+                <value id="neomodadevbr" type="host">*.neomoda.dev.br</value>
+                <value id="sizebay" type="host">*.sizebay.technology</value>
+                <value id="omtrdcnet" type="host">*.omtrdc.net</value>
+                <value id="amcglobalscomtrdcnet" type="host">amcglobal.sc.omtrdc.net</value>
+                <value id="wwwclarity" type="host">www.clarity.ms</value>
+                <value id="tudoclarity" type="host">*.clarity.ms</value>
+                <value id="analytics" type="host">analytics.google.com</value>
+                <value id="tudoanalytics" type="host">*.analytics.google.com</value>
+                <value id="googlecom" type="host">google.com</value>
+                <value id="tudogooglecom" type="host">*.google.com</value>
+                <value id="tudodoubleclicknet" type="host">*.doubleclick.net</value>
+                <value id="demdex" type="host">demdex.net</value>
+                <value id="tudodemdex" type="host">*.demdex.net</value>
+                <value id="staticviramoda" type="host">static.vira.moda</value>
+            </values>
+        </policy>
+        <policy id="font-src">
+            <values>
+                <value id="cloudflare" type="host">*.cloudflare.com</value>
+                <value id="s3" type="host">*.vira.moda</value>
+                <value id="viramoda" type="host">*.vira.moda</value>
+                <value id="staticviramoda" type="host">static.vira.moda</value>
+                <value id="amazonaws" type="host">*.amazonaws.com</value>
+                <value id="s3useast2amazonaws" type="host">s3.us-east-2.amazonaws.com</value>
+                <value id="neomarketonline" type="host">*.neomarket.online</value>
+                <value id="neomodadevbr" type="host">*.neomoda.dev.br</value>
+                <value id="sizebaytec" type="host">*.sizebay.technology</value>
+                <value id="staticviramoda" type="host">static.vira.moda</value>
+            </values>
+        </policy>
+        <policy id="frame-src">
+            <values>
+                <value id="google" type="host">*.google.com</value>
+                <value id="viramoda" type="host">*.vira.moda</value>
+                <value id="staticviramoda" type="host">static.vira.moda</value>
+                <value id="amazonaws" type="host">*.amazonaws.com</value>
+                <value id="s3useast2amazonaws" type="host">s3.us-east-2.amazonaws.com</value>
+                <value id="neomarketonline" type="host">*.neomarket.online</value>
+                <value id="neomodadevbr" type="host">*.neomoda.dev.br</value>
+                <value id="facebooknet" type="host">*.facebook.net</value>
+                <value id="facebookcom" type="host">*.facebook.com</value>
+                <value id="sizebay" type="host">*.sizebay.technology</value>
+                <value id="wwwyoutube" type="host">www.youtube.com</value>
+                <value id="tudoyoutube" type="host">*.youtube.com</value>
+                <value id="staticviramoda" type="host">static.vira.moda</value>
+            </values>
+        </policy>
+    </policies>
+</csp_whitelist>
+

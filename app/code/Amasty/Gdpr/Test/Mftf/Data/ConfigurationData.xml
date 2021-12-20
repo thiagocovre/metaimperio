@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:DataGenerator/etc/dataProfileSchema.xsd">
+    <!--the same option for whole Customer’s Account Privacy Settings-->
+    <entity name="isEnabledPrivacySettings" type="privacySettings">
+        <data key="yes">1</data>
+        <data key="no">0</data>
+    </entity>
+
+    <!--Personal Data Deletion and Anonymization-->
+    <entity name="deleteAbandonedCustomerAccounts" type="deletingAbandonedCustomerAccounts">
+        <data key="status">1</data>
+        <data key="deletionPeriod">0</data>
+    </entity>
+    <entity name="noDeleteAbandonedCustomerAccounts" type="deletingAbandonedCustomerAccounts">
+        <data key="status">0</data>
+    </entity>
+
+    <!--preventDataDeletionPeriod depends on further tests-->
+    <entity name="noDeletePersonalDataInRecentDocuments" type="deletingPersonalDataInRecentDocuments">
+        <data key="status">1</data>
+        <data key="preventDataDeletionPeriod">0</data>
+    </entity>
+    <entity name="deletePersonalDataInRecentDocuments" type="deletingPersonalDataInRecentDocuments">
+        <data key="status">0</data>
+    </entity>
+
+    <!--add needed statuses for test to orderStatusesForDeletingData-->
+    <entity name="isEnabledDeleteDataForSpecifiedOrdersStatus" type="deletingDataForSpecifiedOrdersStatus">
+        <data key="yes">1</data>
+        <data key="no">0</data>
+    </entity>
+    <entity name="orderStatusesForDeletingData" type="orderStatuses">
+        <data key="canceled">Canceled</data>
+        <data key="closed">Closed</data>
+        <data key="pending">Pending</data>
+        <data key="processing">Processing</data>
+    </entity>
+
+    <entity name="isEnabledForbidAnonymizationDeletionIfGiftRegistries" type="anonymizationDeletionIfGiftRegistries">
+        <data key="yes">1</data>
+        <data key="no">0</data>
+    </entity>
+</entities>

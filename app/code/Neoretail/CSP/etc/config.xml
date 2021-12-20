@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <csp>
+            <mode>
+                <storefront>
+                    <report_uri>https://neomodadevbr.report-uri.com/r/d/csp/enforce</report_uri>
+                    <report_only>1</report_only>
+                </storefront>
+                <admin>
+                    <report_uri>https://neomodadevbr.report-uri.com/r/d/csp/enforce</report_uri>
+                    <report_only>1</report_only>
+                </admin>
+            </mode>
+            <policies>
+                <storefront>
+                    <frame-ancestors>
+                        <inline>1</inline>
+                    </frame-ancestors>
+                </storefront>
+            </policies>
+        </csp>
+    </default>
+</config>

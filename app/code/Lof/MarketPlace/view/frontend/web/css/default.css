@@ -1,0 +1,11 @@
+.mkpl-verify {
+    content: url("../image/shield.svg");
+    height: 15px;
+}
+.seller-verify span{
+    line-height: 20px;
+    margin-left: 3px;
+}
+.seller-verify {
+    line-height: 20px;
+}

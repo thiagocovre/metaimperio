@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="GdprAllowOptingOutFromGivenConsent" extends="GdprAllowDownloadingPersonalData">
+        <annotations>
+            <features value="Allow Opting Out from Given Consent"/>
+            <stories value="Given Consent Form Is Available on the Front Privacy Settings Page"/>
+            <title value="Given Consent Form Is Available on the Front Privacy Settings Page"/>
+            <description value="Check Given Consent Form Is Appeared on the Front Privacy Settings Page"/>
+            <severity value="MAJOR"/>
+            <testCaseId value="Gdpr-25"/>
+            <group value="Gdpr"/>
+            <group value="CustomerAccountPrivacySettings"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="AdminConfigurationsAllowOptingOutConsentActionGroup" stepKey="setPrivacySettingsOption"/>
+            <actionGroup ref="AdminCreateHideConsentCheckboxActionGroup" stepKey="createConsentCheckbox">
+                <argument name="consentCheckbox" value="hideConsentCheckbox"/>
+            </actionGroup>
+        </before>
+        <after>
+            <actionGroup ref="AdminConfigurationsAllowOptingOutConsentActionGroup" stepKey="setDefaultPrivacySettingsOption"/>
+            <actionGroup ref="AdminFindConsentCheckboxActionGroup" after="setDefaultPrivacySettingsOption" stepKey="findConsentCheckbox"/>
+            <actionGroup ref="AdminDeleteFromGridConsentCheckboxActionGroup" after="findConsentCheckbox" stepKey="deleteFromGridConsentCheckbox"/>
+        </after>
+
+        <!--check block is available-->
+        <actionGroup ref="StorefrontCheckGivenConsentBlockIsAvailableActionGroup" stepKey="checkAppropriatePrivacySettingsBlockIsAvailable"/>
+        <!--check block is not available-->
+        <actionGroup ref="AdminConfigurationsAllowOptingOutConsentActionGroup" stepKey="setToNoPrivacySettingsOption">
+            <argument name="privacySettings" value="isEnabledPrivacySettings.no"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontCheckGivenConsentBlockIsNotAvailableActionGroup" stepKey="checkAppropriatePrivacySettingsBlockIsNotAvailable"/>
+    </test>
+</tests>

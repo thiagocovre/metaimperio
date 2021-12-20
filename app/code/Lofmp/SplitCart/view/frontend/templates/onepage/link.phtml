@@ -1,0 +1,25 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+$url = $block->getUrl("checkout/index/index");
+$dataPostString = "{'action':'$url','data':{'productIds':''}}";
+$dataPostString = str_replace("'", "\"", $dataPostString);
+$dataPostString = str_replace("/", "\/", $dataPostString);
+$dataPostString = str_replace('"', "&quot;", $dataPostString);
+
+?>
+<?php if ($block->isPossibleOnepageCheckout()):?>
+    <button type="button"
+            data-role="proceed-to-checkout"
+            title="<?= /* @escapeNotVerified */ __('Proceed to Checkout') ?>"
+            data-mage-init='{"Magento_Checkout/js/proceed-to-checkout":{"checkoutUrl":"<?= /* @escapeNotVerified */ $block->getCheckoutUrl() ?>"}}'
+            class="action primary checkout<?= ($block->isDisabled()) ? ' disabled' : '' ?>"
+            id="proceed-to-checkout-btn"
+            data-post="<?php echo $dataPostString ?>"
+            <?php if ($block->isDisabled()):?>disabled="disabled"<?php endif; ?>>
+        <span><?= /* @escapeNotVerified */ __('Proceed to Checkout') ?></span>
+    </button>
+<?php endif?>

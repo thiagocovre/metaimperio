@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="GdprRequiredConsentCheckboxOnNewCustomerAccountPage" extends="GdprConsentCheckboxOnNewCustomerAccountPage">
+        <annotations>
+            <features value="Consent Checkbox"/>
+            <stories value="Customer Can Not Create New Account Without Check Consent Checkbox"/>
+            <title value="Customer Can Not Create New Account Without Check Consent Checkbox"/>
+            <description value="Check Customer Can Not Create New Account Without Check Consent Checkbox"/>
+            <severity value="MAJOR"/>
+            <testCaseId value="Gdpr-5"/>
+            <group value="Gdpr"/>
+            <group value="ConsentCheckbox"/>
+        </annotations>
+
+        <actionGroup ref="StorefrontClickCreateAnAccountCustomerAccountCreationFormActionGroup" after="assertCheckboxBeforeCreateAccount" stepKey="clickCreateCustomerAccount"/>
+        <actionGroup ref="StorefrontAssertNoMessageCustomerCreateAccountActionGroup" after="clickCreateCustomerAccount" stepKey="assertNoSuccessMessage" />
+        <actionGroup ref="StorefrontRequiredCheckboxAfterActionActionGroup" after="assertNoSuccessMessage" stepKey="assertCheckboxAfterCreateAccount"/>
+    </test>
+</tests>

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.landofcoder.com/license-agreement.html
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lofmp_SplitCart
+ * @copyright  Copyright (c) 2018 Landofcoder (http://www.landofcoder.com/)
+ * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Lofmp_SplitCart::css/styles.css" />
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <referenceBlock name="checkout.cart.methods.onepage.bottom">
+                <action method="setTemplate" ifconfig="split_cart_config/general/enable">
+                    <argument name="template" xsi:type="string">Lofmp_SplitCart::onepage/link.phtml</argument>
+                </action>
+            </referenceBlock>
+            <referenceBlock name="checkout.cart.form">
+                <action method="setTemplate" ifconfig="split_cart_config/general/enable">
+                    <argument name="template" xsi:type="string">Lofmp_SplitCart::cart/form.phtml</argument>
+                </action>
+                <block class="Lofmp\SplitCart\Block\SelectSeller" name="select.seller.script" template="Lofmp_SplitCart::scripts/select-seller-script.phtml" ifconfig="split_cart_config/general/enable" />
+            </referenceBlock>
+            <referenceContainer name="cart.summary">
+                <block class="Lofmp\SplitCart\Block\Cart\Totals" name="custom.cart.totals" after="checkout.cart.summary.title" before="checkout.cart.methods.bottom"/>
+            </referenceContainer>
+        </referenceContainer>
+    </body>
+</page>

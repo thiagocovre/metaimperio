@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="GdprConsentCheckboxOnContactUstPage">
+        <annotations>
+            <features value="Consent Checkbox"/>
+            <stories value="Consent Checkbox Is on the Contact Us Page"/>
+            <title value="Consent Checkbox Is on the Contact Us Page"/>
+            <description value="Check Consent Checkbox Is Appeared on the Contact Us Page"/>
+            <severity value="MAJOR"/>
+            <testCaseId value="Gdpr-6"/>
+            <group value="Gdpr"/>
+            <group value="ConsentCheckbox"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin"/>
+            <actionGroup ref="AdminCreateConsentCheckboxActionGroup" stepKey="createConsentCheckbox">
+                <argument name="consentCheckbox" value="defaultConsentCheckbox"/>
+                <argument name="consentCheckboxLocation" value="checkboxLocation.contactUs"/>
+            </actionGroup>
+        </before>
+        <after>
+            <actionGroup ref="AdminFindConsentCheckboxActionGroup" stepKey="findConsentCheckbox"/>
+            <actionGroup ref="AdminDeleteFromGridConsentCheckboxActionGroup" stepKey="deleteFromGridConsentCheckbox"/>
+            <actionGroup ref="logout" stepKey="logoutOfAdmin"/>
+        </after>
+
+        <actionGroup ref="StorefrontOpenContactUsPageActionGroup" stepKey="goToContactUsPage"/>
+        <actionGroup ref="StorefrontFillContactUsFormActionGroup" stepKey="fillContactUsForm">
+            <argument name="customer" value="Simple_US_Customer"/>
+            <argument name="contactUsData" value="DefaultContactUsData"/>
+        </actionGroup>
+        <actionGroup ref="StorefrontRequiredCheckboxBeforeActionActionGroup" stepKey="assertCheckboxBeforeCreateAccount"/>
+        <actionGroup ref="StorefrontCheckConsentCheckboxActionGroup" stepKey="checkConsentCheckbox"/>
+        <actionGroup ref="StorefrontSubmitContactUsFormActionGroup" stepKey="submitContactUsForm"/>
+        <actionGroup ref="AssertMessageContactUsFormActionGroup" stepKey="verifySuccessMessage"/>
+    </test>
+</tests>

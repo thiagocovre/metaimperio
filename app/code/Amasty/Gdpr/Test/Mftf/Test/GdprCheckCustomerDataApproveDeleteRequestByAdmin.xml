@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="GdprCheckCustomerDataApproveDeleteRequestByAdmin" extends="GdprApproveDeleteRequestByAdmin">
+        <annotations>
+            <features value="Delete Request"/>
+            <stories value="Customer Data Is Deleted After Approve Delete Request"/>
+            <title value="Customer Data Is Deleted After Approve Delete Request"/>
+            <description value="Check Customer Data in Admin Part Is Deleted After Approve Delete Request"/>
+            <severity value="MAJOR"/>
+            <testCaseId value="Gdpr-21"/>
+            <group value="Gdpr"/>
+            <group value="CustomerAccountPrivacySettings"/>
+            <group value="DeleteRequest"/>
+        </annotations>
+
+        <before>
+            <createData entity="Simple_US_Customer" stepKey="customer"/>
+        </before>
+
+        <remove keyForRemoval="navigateToCustomersGrid"/>
+        <remove keyForRemoval="filterCustomerByEmail"/>
+        <remove keyForRemoval="checkCustomerOnGrid"/>
+        <remove keyForRemoval="checkAttemptToLoginToStorefront"/>
+        <remove keyForRemoval="seeErrorMessageAfterAttemptToLogIn"/>
+        <amOnPage url="{{AdminEditCustomerPage.url($$customer.id$$)}}" stepKey="goToCustomerEditPage"/>
+        <waitForPageLoad stepKey="waitForCustomerPageLoad"/>
+        <!-- assert customer account information -->
+        <actionGroup ref="AdminAssertNoCustomerAccountInformation" stepKey="checkCustomerAccountInformation">
+            <argument name="customer" value="$$customer$$"/>
+        </actionGroup>
+        <!-- assert customer default billing address -->
+        <actionGroup ref="AdminAssertNoCustomerDefaultBillingAddress" stepKey="checkDefaultBilling">
+            <argument name="customer" value="$$customer$$"/>
+            <argument name="address" value="US_Address_TX"/>
+        </actionGroup>
+        <!-- assert customer default shipping address -->
+        <actionGroup ref="AdminAssertNoCustomerDefaultShippingAddress" stepKey="checkDefaultShipping">
+            <argument name="customer" value="$$customer$$"/>
+            <argument name="address" value="US_Address_TX"/>
+        </actionGroup>
+    </test>
+</tests>

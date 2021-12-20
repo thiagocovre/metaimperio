@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="GdprRequiredConsentCheckboxOnNewsletterSubscription" extends="GdprConsentCheckboxOnNewsletterSubscription">
+        <annotations>
+            <features value="Consent Checkbox"/>
+            <stories value="Customer Can Not Subscribe To Newsletter Without Check Consent Checkbox"/>
+            <title value="Customer Can Not Create New Account Without Check Consent Checkbox"/>
+            <description value="Check Customer Can Not Subscribe To Newsletter Without Check Consent Checkbox"/>
+            <severity value="MAJOR"/>
+            <testCaseId value="Gdpr-13"/>
+            <group value="Gdpr"/>
+            <group value="ConsentCheckbox"/>
+        </annotations>
+        <actionGroup ref="StorefrontAttemptSubscribeNewsletterActionGroup" before="checkConsentCheckbox" stepKey="attemptNewsletterSubscribe">
+            <argument name="email" value="$$customer.email$$"/>
+        </actionGroup>
+    </test>
+</tests>

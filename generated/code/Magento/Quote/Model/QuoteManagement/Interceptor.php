@@ -17,6 +17,15 @@ class Interceptor extends \Magento\Quote\Model\QuoteManagement implements \Magen
     /**
      * {@inheritdoc}
      */
+    public function placeOrder($cartId, ?\Magento\Quote\Api\Data\PaymentInterface $paymentMethod = null)
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'placeOrder');
+        return $pluginInfo ? $this->___callPlugins('placeOrder', func_get_args(), $pluginInfo) : parent::placeOrder($cartId, $paymentMethod);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function submit(\Magento\Quote\Model\Quote $quote, $orderData = [])
     {
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'submit');

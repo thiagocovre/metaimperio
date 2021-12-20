@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+    <!--delete account block-->
+    <actionGroup name="StorefrontDeleteAccountRequestActionGroup">
+        <arguments>
+            <argument name="customerPassword" type="string"/>
+        </arguments>
+        <amOnPage url="{{StorefrontPrivacySettingsPage.url}}" stepKey="openPrivacySettingsPage"/>
+        <waitForPageLoad stepKey="waitForPrivacySettingsPageLoad"/>
+        <click selector="{{StorefrontPrivacySettingsSection.DeleteAccountCheckbox}}" stepKey="checkActionAccountCheckbox"/>
+        <fillField selector="{{StorefrontPrivacySettingsSection.DeleteAccountPassword}}" userInput="{{customerPassword}}" stepKey="fillPassword"/>
+        <click selector="{{StorefrontPrivacySettingsSection.DeleteAccountSubmit}}" stepKey="submitRequest"/>
+        <waitForPageLoad stepKey="waitForRequestSubmitted"/>
+        <seeElement selector="{{StorefrontPrivacySettingsSection.DeleteAccountMessage}}" stepKey="seeRequestSubmittedMessage"/>
+    </actionGroup>
+
+    <!--anonymize account block-->
+    <actionGroup name="StorefrontAnonymizeAccountRequestActionGroup" extends="StorefrontDeleteAccountRequestActionGroup">
+        <click selector="{{StorefrontPrivacySettingsSection.AnonymiseAccountCheckbox}}" stepKey="checkActionAccountCheckbox"/>
+        <fillField selector="{{StorefrontPrivacySettingsSection.AnonymiseAccountPassword}}" userInput="{{customerPassword}}" stepKey="fillPassword"/>
+        <click selector="{{StorefrontPrivacySettingsSection.AnonymiseAccountSubmit}}" stepKey="submitRequest"/>
+        <seeElement selector="{{StorefrontPrivacySettingsSection.AnonymisePersonalDataMessage}}" stepKey="seeRequestSubmittedMessage"/>
+    </actionGroup>
+
+    <!--given consent block-->
+    <actionGroup name="StorefrontCheckConsentIsGivenActionGroup">
+        <arguments>
+            <argument name="consentCheckbox" defaultValue="defaultConsentCheckbox"/>
+        </arguments>
+        <amOnPage url="{{StorefrontPrivacySettingsPage.url}}" stepKey="openPrivacySettingsPage"/>
+        <waitForPageLoad stepKey="waitForPrivacySettingsPageLoad"/>
+        <seeCheckboxIsChecked selector="{{StorefrontPrivacySettingsSection.GivenConsentCheckbox(consentCheckbox.checkboxCode)}}" stepKey="seeConsentGivenStatus"/>
+    </actionGroup>
+
+    <actionGroup name="StorefrontOptOutFromGivenConsentActionGroup" extends="StorefrontCheckConsentIsGivenActionGroup">
+        <uncheckOption selector="{{StorefrontPrivacySettingsSection.GivenConsentCheckbox(consentCheckbox.checkboxCode)}}" stepKey="uncheckGivenConsent"/>
+        <click selector="{{StorefrontPrivacySettingsSection.SaveGivenConsentCheckbox}}" stepKey="saveGivenConsentCheckbox"/>
+        <waitForPageLoad stepKey="waitForSaveGivenConsent"/>
+        <seeElement selector="{{StorefrontPrivacySettingsSection.GivenConsentChangedMessage}}" stepKey="seeGivenConsentChangedMessage"/>
+        <dontSeeCheckboxIsChecked selector="{{StorefrontPrivacySettingsSection.GivenConsentCheckbox(consentCheckbox.checkboxCode)}}" stepKey="seeConsentIsNotGivenStatus"/>
+    </actionGroup>
+</actionGroups>

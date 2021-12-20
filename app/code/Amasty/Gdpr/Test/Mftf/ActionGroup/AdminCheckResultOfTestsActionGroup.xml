@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+    <!--customer grid. Use after filter grid-->
+    <actionGroup name="AdminAssertNoCustomerOnCustomerGridActionGroup">
+        <see selector="{{AdminCustomerGridSection.customerGrid}}" userInput="{{customerGridMessage.noCustomer}}" stepKey="seeEmptyRecordMessage"/>
+    </actionGroup>
+
+    <!--customer page. Use after open customer page-->
+    <actionGroup name="AdminAssertNoCustomerAccountInformation">
+        <arguments>
+            <argument name="customer"/>
+        </arguments>
+        <click selector="{{AdminCustomerAccountInformationSection.accountInformationTab}}" stepKey="proceedToAccountInformation"/>
+        <dontSeeInField selector="{{AdminCustomerAccountInformationSection.firstName}}" userInput="{{customer.firstName}}" stepKey="firstName"/>
+        <dontSeeInField selector="{{AdminCustomerAccountInformationSection.lastName}}" userInput="{{customer.lastName}}" stepKey="lastName"/>
+        <dontSeeInField selector="{{AdminCustomerAccountInformationSection.email}}" userInput="{{customer.email}}" stepKey="email"/>
+    </actionGroup>
+
+    <actionGroup name="AdminAssertNoCustomerDefaultBillingAddress">
+        <arguments>
+            <argument name="customer"/>
+            <argument name="address"/>
+        </arguments>
+        <click selector="{{AdminEditCustomerAddressesSection.addresses}}" stepKey="proceedToAddresses"/>
+        <dontSee selector="{{AdminCustomerAddressesDefaultBillingSection.addressDetails}}" userInput="{{customer.firstName}}" stepKey="firstName"/>
+        <dontSee selector="{{AdminCustomerAddressesDefaultBillingSection.addressDetails}}" userInput="{{customer.lastName}}" stepKey="lastName"/>
+        <dontSee selector="{{AdminCustomerAddressesDefaultBillingSection.addressDetails}}" userInput="{{address.street}}" stepKey="street1"/>
+        <dontSee selector="{{AdminCustomerAddressesDefaultBillingSection.addressDetails}}" userInput="{{address.state}}" stepKey="state"/>
+        <dontSee selector="{{AdminCustomerAddressesDefaultBillingSection.addressDetails}}" userInput="{{address.postcode}}" stepKey="postcode"/>
+        <dontSee selector="{{AdminCustomerAddressesDefaultBillingSection.addressDetails}}" userInput="{{address.telephone}}" stepKey="telephone"/>
+    </actionGroup>
+
+    <actionGroup name="AdminAssertNoCustomerDefaultShippingAddress">
+        <arguments>
+            <argument name="customer"/>
+            <argument name="address"/>
+        </arguments>
+        <click selector="{{AdminEditCustomerAddressesSection.addresses}}" stepKey="proceedToAddresses"/>
+        <dontSee selector="{{AdminCustomerAddressesDefaultShippingSection.addressDetails}}" userInput="{{customer.firstName}}" stepKey="firstName"/>
+        <dontSee selector="{{AdminCustomerAddressesDefaultShippingSection.addressDetails}}" userInput="{{customer.lastName}}" stepKey="lastName"/>
+        <dontSee selector="{{AdminCustomerAddressesDefaultShippingSection.addressDetails}}" userInput="{{address.street}}" stepKey="street1"/>
+        <dontSee selector="{{AdminCustomerAddressesDefaultShippingSection.addressDetails}}" userInput="{{address.state}}" stepKey="state"/>
+        <dontSee selector="{{AdminCustomerAddressesDefaultShippingSection.addressDetails}}" userInput="{{address.postcode}}" stepKey="postcode"/>
+        <dontSee selector="{{AdminCustomerAddressesDefaultShippingSection.addressDetails}}" userInput="{{address.telephone}}" stepKey="telephone"/>
+    </actionGroup>
+</actionGroups>
