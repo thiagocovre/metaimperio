@@ -5,6 +5,8 @@
 /PATCH_*.sh
 
 /app/etc/local.xml
+/app/etc/env.php
+
 
 /media/*
 !/media/.htaccess
@@ -36,8 +38,14 @@
 /media/xmlconnect/system/*
 !/media/xmlconnect/system/ok.gif
 
+/pub/*
+!/pub/.htaccess
+
 /var/*
 !/var/.htaccess
+
+/vendor/*
+!/vendor/.htaccess
 
 !/var/package
 /var/package/*
