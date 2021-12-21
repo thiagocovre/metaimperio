@@ -12,8 +12,10 @@
     },
     "version": "2.4.1",
     "require": {
+        "frenet/frenet-magento2": "^2.2",
+        "magento/composer-root-update-plugin": "~1.0",
         "magento/product-community-edition": "2.4.1",
-        "magento/composer-root-update-plugin": "~1.0"
+        "pagarme/pagarme-magento2-module": "^1.1"
     },
     "autoload": {
         "exclude-from-classmap": [
@@ -77,4 +79,3 @@
         "magento-force": "override"
     }
 }
-
