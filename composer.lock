@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "05ba8e667f7ccee241fc7e157ba033a0",
+    "content-hash": "faf6bf870078e65cc9f4eb6e5f13c9ba",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -233,6 +233,110 @@
                 "Apache-2.0"
             ],
             "description": "Login with Amazon module"
+        },
+        {
+            "name": "apimatic/jsonmapper",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apimatic/jsonmapper.git",
+                "reference": "0883d385653ebd2a194ec79e66facb7d69441404"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apimatic/jsonmapper/zipball/0883d385653ebd2a194ec79e66facb7d69441404",
+                "reference": "0883d385653ebd2a194ec79e66facb7d69441404",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5 || ^6 || ^7",
+                "squizlabs/php_codesniffer": "^3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "apimatic\\jsonmapper\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Weiske",
+                    "email": "christian.weiske@netresearch.de",
+                    "homepage": "http://www.netresearch.de/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Mehdi Jaffery",
+                    "email": "mehdi.jaffery@apimatic.io",
+                    "homepage": "http://apimatic.io/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Map nested JSON structures onto PHP classes",
+            "time": "2020-04-06T20:47:48+00:00"
+        },
+        {
+            "name": "apimatic/unirest-php",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apimatic/unirest-php.git",
+                "reference": "e07351d5f70b445664e2dc4042bbc237ec7d4c93"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apimatic/unirest-php/zipball/e07351d5f70b445664e2dc4042bbc237ec7d4c93",
+                "reference": "e07351d5f70b445664e2dc4042bbc237ec7d4c93",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5 || ^6 || ^7 || ^8 || ^9"
+            },
+            "suggest": {
+                "ext-json": "Allows using JSON Bodies for sending and parsing requests"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Unirest\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mashape",
+                    "email": "opensource@mashape.com",
+                    "homepage": "https://www.mashape.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "APIMATIC",
+                    "email": "opensource@apimatic.io",
+                    "homepage": "https://www.apimatic.io",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Unirest PHP",
+            "homepage": "https://github.com/apimatic/unirest-php",
+            "keywords": [
+                "client",
+                "curl",
+                "http",
+                "https",
+                "rest"
+            ],
+            "time": "2021-11-12T05:20:21+00:00"
         },
         {
             "name": "astock/stock-api-libphp",
@@ -1488,6 +1592,121 @@
             ],
             "description": "Fork of guzzle/RingPHP (abandoned) to be used with elasticsearch-php",
             "time": "2021-11-16T11:51:30+00:00"
+        },
+        {
+            "name": "frenet/frenet-magento2",
+            "version": "2.2.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FrenetGatewaydeFretes/frenet-magento2.git",
+                "reference": "40aa1d4ae50674949a59f8a33d82816f1ffd2bee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FrenetGatewaydeFretes/frenet-magento2/zipball/40aa1d4ae50674949a59f8a33d82816f1ffd2bee",
+                "reference": "40aa1d4ae50674949a59f8a33d82816f1ffd2bee",
+                "shasum": ""
+            },
+            "require": {
+                "frenet/frenet-php": "^1.1.0",
+                "magento/framework": "^102.0.0|^103.0.0",
+                "magento/module-bundle": "*",
+                "magento/module-catalog": "*",
+                "magento/module-configurable-product": "*",
+                "magento/module-directory": "*",
+                "magento/module-downloadable": "*",
+                "magento/module-grouped-product": "*",
+                "magento/module-quote": "*",
+                "magento/module-shipping": "*",
+                "magento/module-store": "*",
+                "php": "^7.0",
+                "symfony/finder": "^v5.0.0"
+            },
+            "require-dev": {
+                "magento/magento-coding-standard": "~4.0.0",
+                "magento/magento2-functional-testing-framework": "*",
+                "phpmd/phpmd": "@stable",
+                "phpunit/phpunit": "~6.5.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Frenet\\Shipping\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Tiago Sampaio",
+                    "email": "tiago@tiagosampaio.com",
+                    "homepage": "http://tiagosampaio.com",
+                    "role": "Magento Architect"
+                }
+            ],
+            "description": "Integrate your Magento 2 with Frenet Services in a simple way.",
+            "time": "2021-12-07T16:39:03+00:00"
+        },
+        {
+            "name": "frenet/frenet-php",
+            "version": "1.1.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FrenetGatewaydeFretes/frenet-php.git",
+                "reference": "f71534d580da6c22ad5d3ea883c2199cd3b32902"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FrenetGatewaydeFretes/frenet-php/zipball/f71534d580da6c22ad5d3ea883c2199cd3b32902",
+                "reference": "f71534d580da6c22ad5d3ea883c2199cd3b32902",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.3",
+                "monolog/monolog": ">=1.17",
+                "php": "^7.0",
+                "php-di/php-di": "^6.0",
+                "tiagosampaio/data-object": "^1.0",
+                "tiagosampaio/event-observer": "^1.0"
+            },
+            "require-dev": {
+                "codacy/coverage": "dev-master",
+                "fzaninotto/faker": "^1.8",
+                "phpmd/phpmd": "^2.6",
+                "phpunit/phpunit": "^6.4",
+                "squizlabs/php_codesniffer": "^3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Frenet\\": "src/"
+                },
+                "files": [
+                    "src/app/bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tiago Sampaio",
+                    "email": "tiago@tiagosampaio.com"
+                }
+            ],
+            "description": "The easiest way to integrate your PHP application with Frenet API.",
+            "keywords": [
+                "frenet",
+                "sdk",
+                "shipping"
+            ],
+            "time": "2021-03-26T11:47:47+00:00"
         },
         {
             "name": "google/recaptcha",
@@ -4478,16 +4697,16 @@
         },
         {
             "name": "laminas/laminas-zendframework-bridge",
-            "version": "1.4.0",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-zendframework-bridge.git",
-                "reference": "bf180a382393e7db5c1e8d0f2ec0c4af9c724baf"
+                "reference": "88bf037259869891afce6504cacc4f8a07b24d0f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-zendframework-bridge/zipball/bf180a382393e7db5c1e8d0f2ec0c4af9c724baf",
-                "reference": "bf180a382393e7db5c1e8d0f2ec0c4af9c724baf",
+                "url": "https://api.github.com/repos/laminas/laminas-zendframework-bridge/zipball/88bf037259869891afce6504cacc4f8a07b24d0f",
+                "reference": "88bf037259869891afce6504cacc4f8a07b24d0f",
                 "shasum": ""
             },
             "require": {
@@ -4530,7 +4749,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2021-09-03T17:53:30+00:00"
+            "time": "2021-12-21T14:34:37+00:00"
         },
         {
             "name": "league/iso3166",
@@ -16008,6 +16227,59 @@
             "time": "2021-05-28T08:32:12+00:00"
         },
         {
+            "name": "mundipagg/mundiapi",
+            "version": "3.1.20",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mundipagg/MundiAPI-PHP.git",
+                "reference": "56535b652071d1930b508eb57ffe88ad7647a8f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mundipagg/MundiAPI-PHP/zipball/56535b652071d1930b508eb57ffe88ad7647a8f5",
+                "reference": "56535b652071d1930b508eb57ffe88ad7647a8f5",
+                "shasum": ""
+            },
+            "require": {
+                "apimatic/jsonmapper": "^1.3.1",
+                "apimatic/unirest-php": "^2.0.0",
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "squizlabs/php_codesniffer": "^2.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MundiAPILib\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "APIMatic SDK Generator",
+                    "email": "support@apimatic.io",
+                    "homepage": "https://apimatic.io",
+                    "role": "API Tool"
+                }
+            ],
+            "description": "Mundipagg API",
+            "homepage": "https://apimatic.io",
+            "keywords": [
+                "MundiAPI",
+                "api",
+                "sdk"
+            ],
+            "abandoned": true,
+            "time": "2021-02-26T19:15:09+00:00"
+        },
+        {
             "name": "myclabs/php-enum",
             "version": "1.8.3",
             "source": {
@@ -16062,6 +16334,169 @@
                 }
             ],
             "time": "2021-07-05T08:18:36+00:00"
+        },
+        {
+            "name": "opis/closure",
+            "version": "3.6.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/opis/closure.git",
+                "reference": "06e2ebd25f2869e54a306dda991f7db58066f7f6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/opis/closure/zipball/06e2ebd25f2869e54a306dda991f7db58066f7f6",
+                "reference": "06e2ebd25f2869e54a306dda991f7db58066f7f6",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.4 || ^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "jeremeamia/superclosure": "^2.0",
+                "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0 || ^8.0 || ^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.6.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Opis\\Closure\\": "src/"
+                },
+                "files": [
+                    "functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marius Sarca",
+                    "email": "marius.sarca@gmail.com"
+                },
+                {
+                    "name": "Sorin Sarca",
+                    "email": "sarca_sorin@hotmail.com"
+                }
+            ],
+            "description": "A library that can be used to serialize closures (anonymous functions) and arbitrary objects.",
+            "homepage": "https://opis.io/closure",
+            "keywords": [
+                "anonymous functions",
+                "closure",
+                "function",
+                "serializable",
+                "serialization",
+                "serialize"
+            ],
+            "time": "2021-04-09T13:42:10+00:00"
+        },
+        {
+            "name": "pagarme/ecommerce-module-core",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pagarme/ecommerce-module-core.git",
+                "reference": "6784424e25bb790baa77065630f252f2e1d30a74"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pagarme/ecommerce-module-core/zipball/6784424e25bb790baa77065630f252f2e1d30a74",
+                "reference": "6784424e25bb790baa77065630f252f2e1d30a74",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "monolog/monolog": "~1.6",
+                "mundipagg/mundiapi": "^3.0",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "ext-pdo": "*",
+                "mockery/mockery": "1.2.4",
+                "nesbot/carbon": "1.39.0",
+                "phpunit/phpunit": "5.7.27"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Pagarme\\Core\\": "src",
+                    "Pagarme\\Core\\Test\\": "tests",
+                    "Pagarme\\Core\\Test\\Mock\\": "tests\\mock"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Open Source Team"
+                }
+            ],
+            "description": "Core component for Pagar.me e-commerce platform modules.",
+            "time": "2021-07-26T20:31:49+00:00"
+        },
+        {
+            "name": "pagarme/pagarme-magento2-module",
+            "version": "1.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pagarme/magento2.git",
+                "reference": "a2f0e47085cc7feeda5a16937e417a9bef26b045"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pagarme/magento2/zipball/a2f0e47085cc7feeda5a16937e417a9bef26b045",
+                "reference": "a2f0e47085cc7feeda5a16937e417a9bef26b045",
+                "shasum": ""
+            },
+            "require": {
+                "mundipagg/mundiapi": "^3.0",
+                "pagarme/ecommerce-module-core": "1.1.2",
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "~1.2",
+                "lusitanian/oauth": "~0.3 <=0.7.0",
+                "magento-ecg/coding-standard": "dev-master",
+                "mundipagg/mundiapi": "^3.0",
+                "pdepend/pdepend": "2.2.2",
+                "phpdocumentor/phpdocumentor": "^2.8",
+                "phpmd/phpmd": "@stable",
+                "phpunit/phpunit": "4.1.0",
+                "phpunit/phpunit-selenium": ">=1.2",
+                "rregeer/phpunit-coverage-check": "^0.1.3",
+                "satooshi/php-coveralls": "^1.0",
+                "sebastian/phpcpd": "^2.0",
+                "sjparkinson/static-review": "~4.1",
+                "squizlabs/php_codesniffer": "2.7.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Pagarme\\Pagarme\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Open Source Team"
+                }
+            ],
+            "description": "Magento 2 Module Pagar.me",
+            "time": "2021-11-05T21:10:42+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
@@ -16495,6 +16930,167 @@
                 "rabbitmq"
             ],
             "time": "2019-10-10T13:23:40+00:00"
+        },
+        {
+            "name": "php-di/invoker",
+            "version": "2.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHP-DI/Invoker.git",
+                "reference": "cd6d9f267d1a3474bdddf1be1da079f01b942786"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHP-DI/Invoker/zipball/cd6d9f267d1a3474bdddf1be1da079f01b942786",
+                "reference": "cd6d9f267d1a3474bdddf1be1da079f01b942786",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.3",
+                "psr/container": "^1.0|^2.0"
+            },
+            "require-dev": {
+                "athletic/athletic": "~0.1.8",
+                "mnapoli/hard-mode": "~0.3.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Invoker\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Generic and extensible callable invoker",
+            "homepage": "https://github.com/PHP-DI/Invoker",
+            "keywords": [
+                "callable",
+                "dependency",
+                "dependency-injection",
+                "injection",
+                "invoke",
+                "invoker"
+            ],
+            "funding": [
+                {
+                    "url": "https://github.com/mnapoli",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-12-13T09:22:56+00:00"
+        },
+        {
+            "name": "php-di/php-di",
+            "version": "6.3.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHP-DI/PHP-DI.git",
+                "reference": "b8126d066ce144765300ee0ab040c1ed6c9ef588"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHP-DI/PHP-DI/zipball/b8126d066ce144765300ee0ab040c1ed6c9ef588",
+                "reference": "b8126d066ce144765300ee0ab040c1ed6c9ef588",
+                "shasum": ""
+            },
+            "require": {
+                "opis/closure": "^3.5.5",
+                "php": ">=7.2.0",
+                "php-di/invoker": "^2.0",
+                "php-di/phpdoc-reader": "^2.0.1",
+                "psr/container": "^1.0"
+            },
+            "provide": {
+                "psr/container-implementation": "^1.0"
+            },
+            "require-dev": {
+                "doctrine/annotations": "~1.2",
+                "friendsofphp/php-cs-fixer": "^2.4",
+                "mnapoli/phpunit-easymock": "^1.2",
+                "ocramius/proxy-manager": "^2.0.2",
+                "phpstan/phpstan": "^0.12",
+                "phpunit/phpunit": "^8.5|^9.0"
+            },
+            "suggest": {
+                "doctrine/annotations": "Install it if you want to use annotations (version ~1.2)",
+                "ocramius/proxy-manager": "Install it if you want to use lazy injection (version ~2.0)"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DI\\": "src/"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "The dependency injection container for humans",
+            "homepage": "https://php-di.org/",
+            "keywords": [
+                "PSR-11",
+                "container",
+                "container-interop",
+                "dependency injection",
+                "di",
+                "ioc",
+                "psr11"
+            ],
+            "funding": [
+                {
+                    "url": "https://github.com/mnapoli",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/php-di/php-di",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-09-02T09:49:58+00:00"
+        },
+        {
+            "name": "php-di/phpdoc-reader",
+            "version": "2.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHP-DI/PhpDocReader.git",
+                "reference": "66daff34cbd2627740ffec9469ffbac9f8c8185c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHP-DI/PhpDocReader/zipball/66daff34cbd2627740ffec9469ffbac9f8c8185c",
+                "reference": "66daff34cbd2627740ffec9469ffbac9f8c8185c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.0"
+            },
+            "require-dev": {
+                "mnapoli/hard-mode": "~0.3.0",
+                "phpunit/phpunit": "^8.5|^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PhpDocReader\\": "src/PhpDocReader"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PhpDocReader parses @var and @param values in PHP docblocks (supports namespaced class names with the same resolution rules as PHP)",
+            "keywords": [
+                "phpdoc",
+                "reflection"
+            ],
+            "time": "2020-10-12T12:39:22+00:00"
         },
         {
             "name": "phpseclib/mcrypt_compat",
@@ -18943,6 +19539,90 @@
             "time": "2020-10-28T17:51:34+00:00"
         },
         {
+            "name": "tiagosampaio/data-object",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tiagosampaio/data-object.git",
+                "reference": "e22bab859d054b0be7b769d12e9b0296175b1990"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tiagosampaio/data-object/zipball/e22bab859d054b0be7b769d12e9b0296175b1990",
+                "reference": "e22bab859d054b0be7b769d12e9b0296175b1990",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0||^8.0"
+            },
+            "require-dev": {
+                "codacy/coverage": "dev-master",
+                "fzaninotto/faker": "^1.8",
+                "phpunit/phpunit": "^6.4",
+                "squizlabs/php_codesniffer": "^3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TiagoSampaio\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tiago Sampaio",
+                    "email": "tiago@tiagosampaio.com"
+                }
+            ],
+            "description": "Object to handle data.",
+            "time": "2021-07-06T19:32:50+00:00"
+        },
+        {
+            "name": "tiagosampaio/event-observer",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tiagosampaio/event-observer.git",
+                "reference": "dab3a512eac3d1b12df64e5a27e7d3878885a1c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tiagosampaio/event-observer/zipball/dab3a512eac3d1b12df64e5a27e7d3878885a1c4",
+                "reference": "dab3a512eac3d1b12df64e5a27e7d3878885a1c4",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0",
+                "tiagosampaio/data-object": "^1.0"
+            },
+            "require-dev": {
+                "codacy/coverage": "dev-master",
+                "phpunit/phpunit": "^6.4",
+                "squizlabs/php_codesniffer": "^3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TiagoSampaio\\EventObserver\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tiago Sampaio",
+                    "email": "tiago@tiagosampaio.com"
+                }
+            ],
+            "description": "Event observers.",
+            "time": "2018-12-20T20:56:33+00:00"
+        },
+        {
             "name": "true/punycode",
             "version": "v2.1.1",
             "source": {
@@ -19876,23 +20556,23 @@
         },
         {
             "name": "codeception/codeception",
-            "version": "4.1.24",
+            "version": "4.1.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/Codeception.git",
-                "reference": "1fc3a8f4d6cf7350e1b69afd136708cfffc89e9e"
+                "reference": "bd05fe0a6c861b9045662fe25ea62c86a6915b5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/1fc3a8f4d6cf7350e1b69afd136708cfffc89e9e",
-                "reference": "1fc3a8f4d6cf7350e1b69afd136708cfffc89e9e",
+                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/bd05fe0a6c861b9045662fe25ea62c86a6915b5b",
+                "reference": "bd05fe0a6c861b9045662fe25ea62c86a6915b5b",
                 "shasum": ""
             },
             "require": {
                 "behat/gherkin": "^4.4.0",
-                "codeception/lib-asserts": "^1.0",
+                "codeception/lib-asserts": "^1.0 | 2.0.*@dev",
                 "codeception/phpunit-wrapper": ">6.0.15 <6.1.0 | ^6.6.1 | ^7.7.1 | ^8.1.1 | ^9.0",
-                "codeception/stub": "^2.0 | ^3.0",
+                "codeception/stub": "^2.0 | ^3.0 | ^4.0",
                 "ext-curl": "*",
                 "ext-json": "*",
                 "ext-mbstring": "*",
@@ -19905,11 +20585,12 @@
                 "symfony/yaml": ">=2.7 <6.0"
             },
             "require-dev": {
-                "codeception/module-asserts": "1.*@dev",
-                "codeception/module-cli": "1.*@dev",
-                "codeception/module-db": "1.*@dev",
-                "codeception/module-filesystem": "1.*@dev",
-                "codeception/module-phpbrowser": "1.*@dev",
+                "codeception/lib-innerbrowser": "^1.0 | 2.0.*@dev",
+                "codeception/module-asserts": "^1.0 | 2.0.*@dev",
+                "codeception/module-cli": "^1.0 | 2.0.*@dev",
+                "codeception/module-db": "^1.0 | 2.0.*@dev",
+                "codeception/module-filesystem": "^1.0 | 2.0.*@dev",
+                "codeception/module-phpbrowser": "^1.0 | 2.0.*@dev",
                 "codeception/specify": "~0.3",
                 "codeception/util-universalframework": "*@dev",
                 "monolog/monolog": "~1.8",
@@ -19966,7 +20647,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2021-12-16T12:57:06+00:00"
+            "time": "2021-12-21T01:23:05+00:00"
         },
         {
             "name": "codeception/lib-asserts",

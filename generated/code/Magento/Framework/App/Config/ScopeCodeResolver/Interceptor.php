@@ -22,4 +22,13 @@ class Interceptor extends \Magento\Framework\App\Config\ScopeCodeResolver implem
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'resolve');
         return $pluginInfo ? $this->___callPlugins('resolve', func_get_args(), $pluginInfo) : parent::resolve($scopeType, $scopeCode);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clean()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'clean');
+        return $pluginInfo ? $this->___callPlugins('clean', func_get_args(), $pluginInfo) : parent::clean();
+    }
 }
